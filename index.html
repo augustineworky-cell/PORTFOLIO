@@ -22,7 +22,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;justify-conten
 .hero-slide{position:absolute;inset:0;background-size:cover;opacity:0;transition:opacity 1.5s ease;}
 .hero-slide.active{opacity:1;animation:zoomin 8s ease forwards;}
 @keyframes zoomin{from{transform:scale(1.06);}to{transform:scale(1.0);}}
-.hero-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(105deg,rgba(0,0,0,0.85) 0%,rgba(0,0,0,0.6) 45%,rgba(0,0,0,0.2) 100%);}
+.hero-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(105deg,rgba(0,0,0,0.88) 0%,rgba(0,0,0,0.75) 45%,rgba(0,0,0,0.55) 100%);}
 .hero-overlay-bottom{position:absolute;bottom:0;left:0;right:0;height:180px;z-index:1;background:linear-gradient(to top,rgba(10,15,20,1),transparent);}
 .marquee-wrap{position:relative;z-index:2;background:rgba(255,255,255,0.06);border-bottom:0.5px solid var(--border);padding:0.65rem 0;overflow:hidden;backdrop-filter:blur(10px);margin-top:62px;}
 .marquee-track{display:flex;gap:3rem;animation:marquee 25s linear infinite;white-space:nowrap;}
@@ -144,9 +144,9 @@ footer{text-align:center;padding:2rem 3rem;border-top:0.5px solid rgba(255,255,2
 <!-- ===== HOME ===== -->
 <div id="home">
   <div class="hero-slides">
-    <div class="hero-slide active" style="background-image:url('img1.jpg');background-position:60% top;"></div>
-    <div class="hero-slide" style="background-image:url('img2.jpg');background-position:70% center;"></div>
-    <div class="hero-slide" style="background-image:url('img3.jpg');background-position:65% 20%;"></div>
+    <div class="hero-slide active" style="background-image:url('img1.jpg');background-size:cover;background-position:50% 15%;"></div>
+    <div class="hero-slide" style="background-image:url('img2.jpg');background-size:cover;background-position:60% center;"></div>
+    <div class="hero-slide" style="background-image:url('img3.jpg');background-size:cover;background-position:55% 25%;"></div>
     <div class="hero-overlay"></div>
     <div class="hero-overlay-bottom"></div>
   </div>
