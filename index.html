@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Augustine — MIS Executive & Business Analyst</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --frost:rgba(255,255,255,0.12);
+  --frost2:rgba(255,255,255,0.07);
+  --border:rgba(255,255,255,0.18);
+  --white:#ffffff;
+}
+html{scroll-behavior:smooth;}
+body{background:#0a0f14;color:#fff;font-family:'Space Grotesk',sans-serif;overflow-x:hidden;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;justify-content:space-between;align-items:center;padding:1.2rem 3rem;backdrop-filter:blur(20px);background:rgba(10,15,20,0.5);border-bottom:0.5px solid var(--border);}
+.nav-logo{font-family:'Space Mono',monospace;font-size:0.85rem;letter-spacing:0.25em;color:#fff;font-weight:700;}
+.nav-links{display:flex;gap:0.3rem;}
+.nav-links a{color:rgba(255,255,255,0.6);text-decoration:none;font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.4rem 0.8rem;border:0.5px solid transparent;transition:all 0.25s;}
+.nav-links a:hover,.nav-links a.active{color:#fff;border-color:var(--border);background:var(--frost2);}
+
+/* SECTIONS */
+section{display:none;min-height:100vh;padding:6rem 3rem 4rem;background:#0a0f14;}
+section.active{display:block;}
+#home{display:none;padding:0;position:relative;overflow:hidden;}
+#home.active{display:flex;flex-direction:column;min-height:100vh;}
+
+/* IMAGE SLIDESHOW HERO */
+.hero-slides{position:absolute;inset:0;z-index:0;}
+.hero-slide{
+  position:absolute;inset:0;
+  background-size:cover;
+  background-position:center;
+  opacity:0;
+  transition:opacity 1.5s ease;
+  transform:scale(1.05);
+  animation:none;
+}
+.hero-slide.active{
+  opacity:1;
+  animation:zoomin 8s ease forwards;
+}
+@keyframes zoomin{
+  from{transform:scale(1.05);}
+  to{transform:scale(1.0);}
+}
+.hero-slide:nth-child(1){background-image:url('img1.jpg');}
+.hero-slide:nth-child(2){background-image:url('img2.jpg');}
+.hero-slide:nth-child(3){background-image:url('img3.jpg');}
+
+/* OVERLAYS */
+.hero-overlay{
+  position:absolute;inset:0;z-index:1;
+  background:linear-gradient(
+    105deg,
+    rgba(0,0,0,0.82) 0%,
+    rgba(0,0,0,0.55) 40%,
+    rgba(0,0,0,0.25) 70%,
+    rgba(0,0,0,0.4) 100%
+  );
+}
+.hero-overlay-bottom{
+  position:absolute;bottom:0;left:0;right:0;height:200px;z-index:1;
+  background:linear-gradient(to top,rgba(10,15,20,1),transparent);
+}
+
+/* MARQUEE */
+.marquee-wrap{position:relative;z-index:2;background:rgba(255,255,255,0.06);border-bottom:0.5px solid var(--border);padding:0.65rem 0;overflow:hidden;backdrop-filter:blur(10px);margin-top:62px;}
+.marquee-track{display:flex;gap:3rem;animation:marquee 25s linear infinite;white-space:nowrap;}
+.marquee-track span{font-size:0.6rem;letter-spacing:0.25em;text-transform:uppercase;color:rgba(255,255,255,0.65);display:flex;align-items:center;gap:0.8rem;}
+.marquee-track span::after{content:'◆';font-size:0.32rem;color:rgba(255,255,255,0.3);}
+@keyframes marquee{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+
+/* HERO CONTENT */
+.hero-body{flex:1;display:flex;flex-direction:column;justify-content:center;padding:0 3rem 0 4rem;position:relative;z-index:2;}
+.hero-tag{font-family:'Space Mono',monospace;font-size:0.6rem;letter-spacing:0.35em;color:rgba(255,255,255,0.5);text-transform:uppercase;margin-bottom:1.5rem;display:flex;align-items:center;gap:0.8rem;}
+.hero-tag::before{content:'';width:30px;height:0.5px;background:rgba(255,255,255,0.4);}
+
+.hero-headline{font-size:clamp(5rem,12vw,10.5rem);font-weight:800;line-height:0.88;letter-spacing:-0.04em;margin-bottom:0.5rem;text-transform:uppercase;}
+.hero-headline .stroke{-webkit-text-stroke:1.5px rgba(255,255,255,0.4);color:transparent;}
+
+.hero-sub{font-size:clamp(0.85rem,1.8vw,1.3rem);font-weight:300;color:rgba(255,255,255,0.6);letter-spacing:0.1em;margin-bottom:2.5rem;text-transform:uppercase;}
+
+.hero-pills{display:flex;flex-wrap:wrap;gap:0.45rem;margin-bottom:3rem;}
+.pill{font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.38rem 0.9rem;background:rgba(255,255,255,0.08);border:0.5px solid rgba(255,255,255,0.18);backdrop-filter:blur(10px);color:rgba(255,255,255,0.75);}
+
+.hero-actions{display:flex;gap:1rem;align-items:center;}
+.btn-white{background:#fff;color:#0a0f14;padding:0.85rem 2.2rem;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;border:none;cursor:pointer;transition:all 0.25s;}
+.btn-white:hover{background:rgba(255,255,255,0.88);transform:translateY(-2px);}
+.btn-ghost{background:transparent;color:#fff;padding:0.85rem 2.2rem;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;border:0.5px solid rgba(255,255,255,0.35);cursor:pointer;transition:all 0.25s;}
+.btn-ghost:hover{background:var(--frost);border-color:#fff;}
+
+/* SLIDE CONTROLS */
+.slide-controls{position:absolute;bottom:5rem;left:4rem;z-index:3;display:flex;align-items:center;gap:1.5rem;}
+.slide-dots{display:flex;gap:0.5rem;}
+.sdot{width:20px;height:1.5px;background:rgba(255,255,255,0.3);cursor:pointer;transition:all 0.3s;}
+.sdot.active{background:#fff;width:40px;}
+.slide-counter{font-family:'Space Mono',monospace;font-size:0.58rem;letter-spacing:0.15em;color:rgba(255,255,255,0.4);}
+
+/* HERO STATS */
+.hero-stats{position:absolute;bottom:3.5rem;right:3rem;display:flex;gap:3rem;z-index:3;}
+.stat .num{font-size:2.5rem;font-weight:800;line-height:1;}
+.stat .lbl{font-size:0.55rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.45);margin-top:0.2rem;}
+
+/* BOTTOM MARQUEE */
+.bottom-marquee{position:relative;z-index:2;background:rgba(0,0,0,0.4);border-top:0.5px solid var(--border);padding:0.65rem 0;overflow:hidden;}
+.bottom-marquee .marquee-track{animation-direction:reverse;animation-duration:30s;}
+
+/* ABOUT */
+.sec-eyebrow{font-family:'Space Mono',monospace;font-size:0.6rem;letter-spacing:0.3em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:0.5rem;}
+.sec-title{font-size:clamp(2.5rem,6vw,5rem);font-weight:800;text-transform:uppercase;letter-spacing:-0.03em;line-height:0.95;margin-bottom:3rem;}
+.divider{height:0.5px;background:rgba(255,255,255,0.08);margin-bottom:3rem;}
+.about-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:5rem;align-items:start;}
+.about-bio{font-size:1rem;line-height:1.9;color:rgba(255,255,255,0.7);}
+.about-bio strong{color:#fff;}
+.about-bio p{margin-bottom:1.2rem;}
+.glass-card{background:var(--frost);border:0.5px solid var(--border);backdrop-filter:blur(20px);padding:2rem;}
+.detail-row{display:flex;justify-content:space-between;align-items:center;padding:0.85rem 0;border-bottom:0.5px solid rgba(255,255,255,0.06);font-size:0.82rem;}
+.detail-row:last-child{border-bottom:none;}
+.detail-key{font-family:'Space Mono',monospace;font-size:0.58rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.38);}
+.detail-val{color:#fff;font-weight:500;}
+.avail-badge{display:inline-flex;align-items:center;gap:0.5rem;background:rgba(34,197,94,0.08);padding:0.5rem 1.2rem;font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;border:0.5px solid rgba(34,197,94,0.25);margin-top:2rem;color:#22c55e;}
+.dot{width:6px;height:6px;border-radius:50%;background:#22c55e;animation:blink 1.5s infinite;flex-shrink:0;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0.2;}}
+
+/* PROJECTS */
+.projects-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,0.06);}
+.proj-card{background:#0a0f14;padding:2.5rem;position:relative;overflow:hidden;cursor:pointer;transition:background 0.3s;}
+.proj-card:hover{background:rgba(255,255,255,0.05);}
+.proj-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity 0.3s;background:rgba(255,255,255,0.04);}
+.proj-card:hover .proj-overlay{opacity:1;}
+.visit-btn{background:#fff;color:#0a0f14;padding:0.6rem 1.8rem;font-weight:700;font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;}
+.proj-num{font-family:'Space Mono',monospace;font-size:0.56rem;color:rgba(255,255,255,0.28);margin-bottom:1.5rem;letter-spacing:0.1em;}
+.proj-name{font-size:2rem;font-weight:800;text-transform:uppercase;letter-spacing:-0.02em;margin-bottom:0.4rem;}
+.proj-role{font-size:0.68rem;color:rgba(255,255,255,0.42);text-transform:uppercase;letter-spacing:0.15em;margin-bottom:1rem;}
+.proj-desc{font-size:0.8rem;color:rgba(255,255,255,0.58);line-height:1.65;margin-bottom:1.5rem;}
+.proj-tags{display:flex;flex-wrap:wrap;gap:0.35rem;}
+.proj-tag{font-size:0.56rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.22rem 0.6rem;background:rgba(255,255,255,0.05);border:0.5px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.55);}
+.proj-status{position:absolute;top:2.5rem;right:2.5rem;display:flex;align-items:center;gap:0.4rem;font-size:0.56rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.38);}
+
+/* SKILLS */
+.skills-wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
+.skill-box{background:var(--frost2);border:0.5px solid rgba(255,255,255,0.08);backdrop-filter:blur(10px);padding:1.8rem;}
+.skill-box-title{font-family:'Space Mono',monospace;font-size:0.56rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.38);margin-bottom:1.5rem;}
+.skill-row{display:flex;justify-content:space-between;align-items:center;padding:0.55rem 0;border-bottom:0.5px solid rgba(255,255,255,0.04);font-size:0.8rem;}
+.skill-row:last-child{border-bottom:none;}
+.skill-pct{font-family:'Space Mono',monospace;font-size:0.6rem;color:rgba(255,255,255,0.32);}
+
+/* CONTACT */
+.contact-wrap{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;}
+.contact-big{font-size:clamp(2rem,5vw,4rem);font-weight:800;text-transform:uppercase;letter-spacing:-0.03em;line-height:1;margin-bottom:1.5rem;}
+.contact-sub{color:rgba(255,255,255,0.58);line-height:1.8;margin-bottom:2.5rem;font-size:0.88rem;}
+.contact-item{display:flex;align-items:center;gap:1rem;padding:1rem 1.2rem;background:var(--frost2);border:0.5px solid rgba(255,255,255,0.08);margin-bottom:0.8rem;font-size:0.82rem;text-decoration:none;color:#fff;transition:background 0.2s;}
+.contact-item:hover{background:var(--frost);}
+.contact-icon{width:34px;height:34px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.08);font-size:0.9rem;flex-shrink:0;}
+.form-lbl{display:block;font-size:0.56rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.38);margin-bottom:0.5rem;margin-top:1.2rem;}
+.form-lbl:first-child{margin-top:0;}
+.form-inp,.form-ta{width:100%;background:var(--frost2);border:0.5px solid rgba(255,255,255,0.08);color:#fff;padding:0.85rem 1rem;font-family:'Space Grotesk',sans-serif;font-size:0.88rem;outline:none;transition:border-color 0.2s;}
+.form-inp:focus,.form-ta:focus{border-color:rgba(255,255,255,0.35);}
+.form-inp::placeholder,.form-ta::placeholder{color:rgba(255,255,255,0.22);}
+.form-ta{height:110px;resize:none;}
+
+/* RESUME */
+.resume-wrap{display:grid;grid-template-columns:1fr 1fr;gap:4rem;}
+.res-sec-title{font-family:'Space Mono',monospace;font-size:0.56rem;letter-spacing:0.25em;text-transform:uppercase;color:rgba(255,255,255,0.38);margin-bottom:1.5rem;}
+.timeline{border-left:0.5px solid rgba(255,255,255,0.08);padding-left:1.5rem;}
+.tl-item{position:relative;margin-bottom:2rem;}
+.tl-item::before{content:'';position:absolute;left:-1.7rem;top:5px;width:6px;height:6px;border-radius:50%;background:#fff;border:2px solid #0a0f14;}
+.tl-year{font-family:'Space Mono',monospace;font-size:0.56rem;color:rgba(255,255,255,0.32);margin-bottom:0.3rem;letter-spacing:0.1em;}
+.tl-title{font-size:0.95rem;font-weight:700;margin-bottom:0.2rem;text-transform:uppercase;letter-spacing:0.03em;}
+.tl-sub{font-size:0.78rem;color:rgba(255,255,255,0.48);}
+.cert-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.cert-item{background:var(--frost2);border:0.5px solid rgba(255,255,255,0.06);padding:1rem;}
+.cert-name{font-weight:600;margin-bottom:0.2rem;font-size:0.85rem;}
+.cert-sub{font-size:0.62rem;color:rgba(255,255,255,0.38);}
+
+footer{text-align:center;padding:2rem 3rem;border-top:0.5px solid rgba(255,255,255,0.06);font-size:0.58rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.22);background:#0a0f14;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">[ AGX ]</div>
+  <div class="nav-links">
+    <a href="#" onclick="go('home')" class="active" id="nav-home">[ Home ]</a>
+    <a href="#" onclick="go('about')" id="nav-about">[ About ]</a>
+    <a href="#" onclick="go('projects')" id="nav-projects">[ Projects ]</a>
+    <a href="#" onclick="go('skills')" id="nav-skills">[ Skills ]</a>
+    <a href="#" onclick="go('contact')" id="nav-contact">[ Contact ]</a>
+    <a href="#" onclick="go('resume')" id="nav-resume">[ Resume ]</a>
+  </div>
+</nav>
+
+<!-- HOME -->
+<section id="home" class="active">
+
+  <!-- IMAGE SLIDES -->
+  <div class="hero-slides">
+    <div class="hero-slide active"></div>
+    <div class="hero-slide"></div>
+    <div class="hero-slide"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-overlay-bottom"></div>
+  </div>
+
+  <!-- TOP MARQUEE -->
+  <div class="marquee-wrap">
+    <div class="marquee-track">
+      <span>MIS Executive</span><span>Business Analyst</span><span>Data Analyst</span>
+      <span>Internal Tool Developer</span><span>Business Automation</span>
+      <span>Supabase</span><span>Vite</span><span>JavaScript</span>
+      <span>MIS Executive</span><span>Business Analyst</span><span>Data Analyst</span>
+      <span>Internal Tool Developer</span><span>Business Automation</span>
+      <span>Supabase</span><span>Vite</span><span>JavaScript</span>
+    </div>
+  </div>
+
+  <!-- HERO CONTENT -->
+  <div class="hero-body">
+    <div class="hero-tag">[ Available for new opportunities ]</div>
+    <div class="hero-headline">
+      <div>AUGUS</div>
+      <div class="stroke">TINE</div>
+    </div>
+    <div class="hero-sub">MIS Executive — MakeMyClicks</div>
+    <div class="hero-pills">
+      <span class="pill">MIS Executive</span>
+      <span class="pill">Business Analyst</span>
+      <span class="pill">Data Analyst</span>
+      <span class="pill">Tool Developer</span>
+      <span class="pill">Automation</span>
+    </div>
+    <div class="hero-actions">
+      <button class="btn-white" onclick="go('projects')">View Projects</button>
+      <button class="btn-ghost" onclick="go('contact')">Get In Touch</button>
+    </div>
+  </div>
+
+  <!-- SLIDE CONTROLS -->
+  <div class="slide-controls">
+    <div class="slide-dots">
+      <div class="sdot active" onclick="switchSlide(0)"></div>
+      <div class="sdot" onclick="switchSlide(1)"></div>
+      <div class="sdot" onclick="switchSlide(2)"></div>
+    </div>
+    <div class="slide-counter" id="counter">01 / 03</div>
+  </div>
+
+  <!-- STATS -->
+  <div class="hero-stats">
+    <div class="stat"><div class="num">5</div><div class="lbl">Apps Live</div></div>
+    <div class="stat"><div class="num">1+</div><div class="lbl">Years Exp.</div></div>
+    <div class="stat"><div class="num">100%</div><div class="lbl">Deployed</div></div>
+  </div>
+
+  <!-- BOTTOM MARQUEE -->
+  <div class="bottom-marquee">
+    <div class="marquee-track" style="animation-direction:reverse;animation-duration:30s;">
+      <span>PRICEV3</span><span>BIKREE</span><span>KHARIDI</span>
+      <span>DISPATCH</span><span>GOODSGURU</span><span>Vercel</span>
+      <span>GitHub</span><span>PostgreSQL</span>
+      <span>PRICEV3</span><span>BIKREE</span><span>KHARIDI</span>
+      <span>DISPATCH</span><span>GOODSGURU</span><span>Vercel</span>
+      <span>GitHub</span><span>PostgreSQL</span>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="sec-eyebrow">[ 01 / 05 ]</div>
+  <div class="sec-title">About<br>Me.</div>
+  <div class="divider"></div>
+  <div class="about-grid">
+    <div class="about-bio">
+      <p>I'm <strong>Augustine</strong> — a <strong>MIS Executive, Business Analyst & Internal Tool Developer</strong> with hands-on experience building real business systems from the ground up.</p>
+      <p>At <strong>MakeMyClicks</strong>, I designed and deployed <strong>5 production web applications</strong> — a price calculator, CRM, procurement system, dispatch tracker, and inventory management platform — all used daily by the team.</p>
+      <p>My work sits at the intersection of <strong>business operations and technology</strong>. I translate complex workflows into clean, usable software that actually solves problems.</p>
+      <p>Now looking for my next challenge in <strong>MIS, Business Analysis, or Internal Tools development</strong>.</p>
+      <div class="avail-badge"><span class="dot"></span> Open to work — Available immediately</div>
+    </div>
+    <div>
+      <div class="glass-card">
+        <div class="detail-row"><span class="detail-key">Name</span><span class="detail-val">Augustine</span></div>
+        <div class="detail-row"><span class="detail-key">Last Role</span><span class="detail-val">MIS Executive</span></div>
+        <div class="detail-row"><span class="detail-key">Company</span><span class="detail-val">MakeMyClicks</span></div>
+        <div class="detail-row"><span class="detail-key">Experience</span><span class="detail-val">1+ Year</span></div>
+        <div class="detail-row"><span class="detail-key">Location</span><span class="detail-val">India</span></div>
+        <div class="detail-row"><span class="detail-key">Email</span><span class="detail-val">augustine.worky@gmail.com</span></div>
+        <div class="detail-row"><span class="detail-key">Stack</span><span class="detail-val">HTML, JS, Supabase, Vite</span></div>
+        <div class="detail-row"><span class="detail-key">Status</span><span class="detail-val" style="color:#22c55e;">● Open to work</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="sec-eyebrow">[ 02 / 05 ]</div>
+  <div class="sec-title">Projects<br>Built.</div>
+  <div class="divider"></div>
+  <div class="projects-grid">
+    <div class="proj-card" onclick="window.open('https://pricev-3.vercel.app','_blank')">
+      <div class="proj-num">001 / 005</div>
+      <div class="proj-status"><span class="dot"></span> Live</div>
+      <div class="proj-name">PRICEV3</div>
+      <div class="proj-role">Price Catalog & Calculator</div>
+      <div class="proj-desc">Full-featured price catalog for printing professionals. Role-based access with ADMIN, SALES and EA roles. Cost analysis, margin tracking and product management.</div>
+      <div class="proj-tags"><span class="proj-tag">Vite</span><span class="proj-tag">Supabase</span><span class="proj-tag">Chart.js</span><span class="proj-tag">XLSX</span></div>
+      <div class="proj-overlay"><div class="visit-btn">Visit Live →</div></div>
+    </div>
+    <div class="proj-card" onclick="window.open('https://bikree.vercel.app','_blank')">
+      <div class="proj-num">002 / 005</div>
+      <div class="proj-status"><span class="dot"></span> Live</div>
+      <div class="proj-name">BIKREE</div>
+      <div class="proj-role">CRM & Sales System</div>
+      <div class="proj-desc">End-to-end CRM for sales teams. Lead management, follow-up tracking, customer records, activity logs and sales pipeline management.</div>
+      <div class="proj-tags"><span class="proj-tag">HTML/JS</span><span class="proj-tag">Supabase</span><span class="proj-tag">Lucide</span></div>
+      <div class="proj-overlay"><div class="visit-btn">Visit Live →</div></div>
+    </div>
+    <div class="proj-card" onclick="window.open('https://kharidi.vercel.app','_blank')">
+      <div class="proj-num">003 / 005</div>
+      <div class="proj-status"><span class="dot"></span> Live</div>
+      <div class="proj-name">KHARIDI</div>
+      <div class="proj-role">Procurement System</div>
+      <div class="proj-desc">Procurement management with AI-powered assistance. Purchase order tracking, vendor management and spend analytics powered by Gemini AI.</div>
+      <div class="proj-tags"><span class="proj-tag">HTML/JS</span><span class="proj-tag">Supabase</span><span class="proj-tag">Gemini AI</span></div>
+      <div class="proj-overlay"><div class="visit-btn">Visit Live →</div></div>
+    </div>
+    <div class="proj-card" onclick="window.open('https://dispatch.vercel.app','_blank')">
+      <div class="proj-num">004 / 005</div>
+      <div class="proj-status"><span class="dot"></span> Live</div>
+      <div class="proj-name">DISPATCH</div>
+      <div class="proj-role">Dispatch & Delivery Tracker</div>
+      <div class="proj-desc">Real-time dispatch and delivery tracking system with PWA support. Route management, live status updates, multi-language and offline capability.</div>
+      <div class="proj-tags"><span class="proj-tag">PWA</span><span class="proj-tag">Supabase</span><span class="proj-tag">Service Worker</span></div>
+      <div class="proj-overlay"><div class="visit-btn">Visit Live →</div></div>
+    </div>
+    <div class="proj-card" onclick="window.open('https://goodsguru.vercel.app','_blank')" style="grid-column:span 2;">
+      <div class="proj-num">005 / 005</div>
+      <div class="proj-status"><span class="dot"></span> Live</div>
+      <div class="proj-name">GOODSGURU</div>
+      <div class="proj-role">Smart Inventory Management System</div>
+      <div class="proj-desc">Full inventory management platform with ageing reports, vendor performance analytics, smart reorder alerts, purchase orders, sales tracking and AI audit tools.</div>
+      <div class="proj-tags"><span class="proj-tag">Vite</span><span class="proj-tag">Supabase</span><span class="proj-tag">Analytics</span><span class="proj-tag">AI Audit</span></div>
+      <div class="proj-overlay"><div class="visit-btn">Visit Live →</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="sec-eyebrow">[ 03 / 05 ]</div>
+  <div class="sec-title">Skills &<br>Stack.</div>
+  <div class="divider"></div>
+  <div class="skills-wrap">
+    <div class="skill-box"><div class="skill-box-title">[ Frontend ]</div><div class="skill-row"><span>HTML / CSS</span><span class="skill-pct">95%</span></div><div class="skill-row"><span>JavaScript</span><span class="skill-pct">88%</span></div><div class="skill-row"><span>Vite</span><span class="skill-pct">80%</span></div><div class="skill-row"><span>Responsive Design</span><span class="skill-pct">85%</span></div><div class="skill-row"><span>Chart.js</span><span class="skill-pct">78%</span></div></div>
+    <div class="skill-box"><div class="skill-box-title">[ Backend & DB ]</div><div class="skill-row"><span>Supabase</span><span class="skill-pct">90%</span></div><div class="skill-row"><span>PostgreSQL</span><span class="skill-pct">78%</span></div><div class="skill-row"><span>REST APIs</span><span class="skill-pct">75%</span></div><div class="skill-row"><span>Row Level Security</span><span class="skill-pct">80%</span></div></div>
+    <div class="skill-box"><div class="skill-box-title">[ Business ]</div><div class="skill-row"><span>Business Analysis</span><span class="skill-pct">92%</span></div><div class="skill-row"><span>MIS Reporting</span><span class="skill-pct">90%</span></div><div class="skill-row"><span>Data Analysis</span><span class="skill-pct">85%</span></div><div class="skill-row"><span>Process Automation</span><span class="skill-pct">82%</span></div><div class="skill-row"><span>Excel / Sheets</span><span class="skill-pct">95%</span></div></div>
+    <div class="skill-box"><div class="skill-box-title">[ DevOps & Tools ]</div><div class="skill-row"><span>Git / GitHub</span><span class="skill-pct">80%</span></div><div class="skill-row"><span>Vercel</span><span class="skill-pct">85%</span></div><div class="skill-row"><span>VS Code</span><span class="skill-pct">90%</span></div><div class="skill-row"><span>PWA</span><span class="skill-pct">72%</span></div></div>
+    <div class="skill-box"><div class="skill-box-title">[ AI & Integration ]</div><div class="skill-row"><span>Gemini API</span><span class="skill-pct">75%</span></div><div class="skill-row"><span>Claude AI</span><span class="skill-pct">80%</span></div><div class="skill-row"><span>AI Prompting</span><span class="skill-pct">88%</span></div><div class="skill-row"><span>Serverless Functions</span><span class="skill-pct">70%</span></div></div>
+    <div class="skill-box"><div class="skill-box-title">[ Domain ]</div><div class="skill-row"><span>Procurement</span><span class="skill-pct">88%</span></div><div class="skill-row"><span>Inventory Mgmt</span><span class="skill-pct">85%</span></div><div class="skill-row"><span>Sales CRM</span><span class="skill-pct">82%</span></div><div class="skill-row"><span>Pricing Systems</span><span class="skill-pct">90%</span></div></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="sec-eyebrow">[ 04 / 05 ]</div>
+  <div class="sec-title">Let's<br>Connect.</div>
+  <div class="divider"></div>
+  <div class="contact-wrap">
+    <div>
+      <p class="contact-big">Open to<br>New Roles.</p>
+      <p class="contact-sub">Looking for opportunities in MIS, Business Analysis, Data Analysis, or Internal Tool Development. Available for full-time roles, freelance, or consulting.</p>
+      <a class="contact-item" href="mailto:augustine.worky@gmail.com"><div class="contact-icon">✉</div><span>augustine.worky@gmail.com</span></a>
+      <a class="contact-item" href="https://github.com/augustineworky-cell" target="_blank"><div class="contact-icon">⌥</div><span>github.com/augustineworky-cell</span></a>
+      <a class="contact-item" href="#"><div class="contact-icon">in</div><span>LinkedIn — Coming Soon</span></a>
+    </div>
+    <div>
+      <label class="form-lbl">Your Name</label><input class="form-inp" type="text" placeholder="John Doe">
+      <label class="form-lbl">Email</label><input class="form-inp" type="email" placeholder="john@company.com">
+      <label class="form-lbl">Message</label><textarea class="form-ta" placeholder="Tell me about the opportunity..."></textarea>
+      <button class="btn-white" style="margin-top:1.2rem;width:100%;">Send Message</button>
+    </div>
+  </div>
+</section>
+
+<!-- RESUME -->
+<section id="resume">
+  <div class="sec-eyebrow">[ 05 / 05 ]</div>
+  <div class="sec-title">Resume &<br>Experience.</div>
+  <div class="divider"></div>
+  <div class="resume-wrap">
+    <div>
+      <div class="res-sec-title">[ Work Experience ]</div>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-year">2024 — 2025</div><div class="tl-title">MIS Executive</div><div class="tl-sub">MakeMyClicks — Built & deployed 5 production web apps</div></div>
+        <div class="tl-item"><div class="tl-year">2024</div><div class="tl-title">Internal Tool Developer</div><div class="tl-sub">MakeMyClicks — Price calculator, CRM, procurement, dispatch & inventory</div></div>
+        <div class="tl-item"><div class="tl-year">2024</div><div class="tl-title">Business & Data Analyst</div><div class="tl-sub">MakeMyClicks — MIS reporting, data analysis & process automation</div></div>
+      </div>
+      <div class="res-sec-title" style="margin-top:2.5rem;">[ Projects Built ]</div>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-title">PRICEV3</div><div class="tl-sub">Price catalog with role-based access & margin tracking</div></div>
+        <div class="tl-item"><div class="tl-title">BIKREE</div><div class="tl-sub">Full CRM with lead management & sales pipeline</div></div>
+        <div class="tl-item"><div class="tl-title">KHARIDI</div><div class="tl-sub">AI-powered procurement & purchase order system</div></div>
+        <div class="tl-item"><div class="tl-title">DISPATCH</div><div class="tl-sub">PWA delivery tracker with real-time updates</div></div>
+        <div class="tl-item"><div class="tl-title">GOODSGURU</div><div class="tl-sub">Smart IMS with ageing reports & vendor analytics</div></div>
+      </div>
+    </div>
+    <div>
+      <div class="res-sec-title">[ Core Skills ]</div>
+      <div class="cert-grid">
+        <div class="cert-item"><div class="cert-name">MIS Reporting</div><div class="cert-sub">Excel, Dashboards, KPIs</div></div>
+        <div class="cert-item"><div class="cert-name">Business Analysis</div><div class="cert-sub">Process mapping & optimization</div></div>
+        <div class="cert-item"><div class="cert-name">Data Analysis</div><div class="cert-sub">PostgreSQL, Charts, Insights</div></div>
+        <div class="cert-item"><div class="cert-name">Tool Development</div><div class="cert-sub">HTML, JS, Vite, Supabase</div></div>
+        <div class="cert-item"><div class="cert-name">Automation</div><div class="cert-sub">Workflow & process automation</div></div>
+        <div class="cert-item"><div class="cert-name">AI Integration</div><div class="cert-sub">Gemini API, Claude AI</div></div>
+      </div>
+      <div class="res-sec-title" style="margin-top:2.5rem;">[ Deployment Stack ]</div>
+      <div class="cert-grid">
+        <div class="cert-item"><div class="cert-name">Vercel</div><div class="cert-sub">5 apps deployed & live</div></div>
+        <div class="cert-item"><div class="cert-name">GitHub</div><div class="cert-sub">Version control & CI/CD</div></div>
+        <div class="cert-item"><div class="cert-name">Supabase</div><div class="cert-sub">Backend, Auth & DB</div></div>
+        <div class="cert-item"><div class="cert-name">PWA</div><div class="cert-sub">Offline-capable web apps</div></div>
+      </div>
+      <div style="margin-top:2.5rem;display:flex;gap:1rem;">
+        <button class="btn-white">Download CV PDF</button>
+        <button class="btn-ghost" onclick="go('contact')">Contact Me</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>© 2025 Augustine — Built with HTML, JS & Deployed on Vercel</footer>
+
+<script>
+const slides = document.querySelectorAll('.hero-slide');
+const dots = document.querySelectorAll('.sdot');
+const counter = document.getElementById('counter');
+let cur = 0, timer;
+
+function switchSlide(idx){
+  slides[cur].classList.remove('active');
+  dots[cur].classList.remove('active');
+  cur = idx;
+  slides[cur].classList.add('active');
+  dots[cur].classList.add('active');
+  counter.textContent = String(cur+1).padStart(2,'0') + ' / 03';
+  clearInterval(timer);
+  timer = setInterval(()=>switchSlide((cur+1)%3), 6000);
+}
+timer = setInterval(()=>switchSlide((cur+1)%3), 6000);
+
+function go(id){
+  document.querySelectorAll('section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.nav-links a').forEach(a=>a.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.getElementById('nav-'+id).classList.add('active');
+  window.scrollTo(0,0);
+}
+</script>
+</body>
+</html>
