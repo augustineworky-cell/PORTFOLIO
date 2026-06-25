@@ -1,33 +1,50 @@
 // ============================================
-// APP.JS — Main Navigation Controller
+// APP.JS — Navigation with GSAP transitions
 // ============================================
 function go(id) {
-  // Hide home
+  const curtain = document.getElementById('curtain');
   const home = document.getElementById('home');
-  home.style.display = 'none';
 
-  // Hide all pages
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  gsap.to(curtain, {
+    scaleY: 1,
+    duration: 0.32,
+    ease: 'power3.in',
+    transformOrigin: 'bottom center',
+    onComplete: () => {
+      // Hide everything
+      home.style.display = 'none';
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
 
-  // Remove active nav
-  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+      // Show target
+      if (id === 'home') {
+        home.style.display = 'block';
+      } else {
+        const p = document.getElementById(id);
+        if (p) p.classList.add('active');
+      }
 
-  // Show selected
-  if (id === 'home') {
-    home.style.display = 'flex';
-  } else {
-    const page = document.getElementById(id);
-    if (page) page.classList.add('active');
-  }
+      // Update nav active state
+      const navEl = document.getElementById('nav-' + id);
+      if (navEl) navEl.classList.add('active');
 
-  // Set active nav
-  const navEl = document.getElementById('nav-' + id);
-  if (navEl) navEl.classList.add('active');
+      window.scrollTo(0, 0);
 
-  window.scrollTo(0, 0);
+      // Curtain reveal
+      gsap.to(curtain, {
+        scaleY: 0,
+        duration: 0.38,
+        ease: 'power3.out',
+        transformOrigin: 'top center',
+        delay: 0.05
+      });
+
+      // Page animations
+      if (typeof animatePageIn === 'function') animatePageIn(id);
+    }
+  });
 }
 
-// Init — show home on load
 document.addEventListener('DOMContentLoaded', () => {
-  document.getElementById('home').style.display = 'flex';
+  document.getElementById('home').style.display = 'block';
 });

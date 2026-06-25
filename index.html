@@ -4,479 +4,506 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Augustine — MIS Executive & Business Analyst</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box;}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 :root{
-  --bg:#0d0b09;
-  --bg2:#141008;
-  --accent:#e91e8c;
-  --accent-dim:rgba(233,30,140,0.1);
-  --border:rgba(255,255,255,0.09);
-  --muted:rgba(255,255,255,0.5);
-  --card:rgba(255,255,255,0.04);
-  --ticker-h:34px;
-  --nav-h:58px;
+  --cream:#f5f3ef;
+  --black:#1a1a1a;
+  --white:#ffffff;
+  --muted:#6b6b6b;
+  --border:#e0ddd8;
+  --grey:#edebe6;
+  --ah:36px;
+  --nh:68px;
+  --off:104px;
 }
 html{scroll-behavior:smooth;}
-body{background:var(--bg);color:#fff;font-family:'Space Grotesk',sans-serif;overflow-x:hidden;}
+body{background:var(--cream);color:var(--black);font-family:'Space Grotesk',sans-serif;overflow-x:hidden;}
 
-/* ── ANNOUNCEMENT TICKER ── */
-.ticker-bar{position:fixed;top:0;left:0;right:0;z-index:1100;height:var(--ticker-h);background:var(--accent);overflow:hidden;display:flex;align-items:center;}
-.ticker-track{display:flex;gap:0;animation:ticker 35s linear infinite;white-space:nowrap;flex-shrink:0;}
-.ticker-track span{font-size:0.6rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#fff;padding:0 2.5rem;display:flex;align-items:center;gap:0.8rem;}
-.ticker-track span::before{content:'●';font-size:0.4rem;opacity:0.7;}
-@keyframes ticker{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+/* CURTAIN */
+#curtain{position:fixed;inset:0;z-index:9999;background:var(--black);transform:scaleY(0);transform-origin:bottom center;pointer-events:none;}
 
-/* ── NAVIGATION ── */
-nav{position:fixed;top:var(--ticker-h);left:0;right:0;z-index:1000;display:flex;justify-content:space-between;align-items:center;height:var(--nav-h);padding:0 3.5rem;background:rgba(13,11,9,0.92);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);}
-.nav-logo{font-family:'Space Mono',monospace;font-size:1rem;letter-spacing:0.25em;color:#fff;font-weight:700;text-decoration:none;}
-.nav-logo em{color:var(--accent);font-style:normal;}
-.nav-links{display:flex;align-items:center;gap:0.1rem;}
-.nav-links a{color:var(--muted);text-decoration:none;font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.45rem 0.9rem;transition:color 0.2s;}
-.nav-links a:hover,.nav-links a.active{color:#fff;}
-.nav-hire{background:var(--accent);color:#fff!important;padding:0.5rem 1.4rem!important;font-weight:700!important;margin-left:0.8rem;transition:background 0.2s!important;}
-.nav-hire:hover{background:#c4177a!important;color:#fff!important;}
+/* ANNOUNCE */
+.abar{position:fixed;top:0;left:0;right:0;z-index:1100;height:var(--ah);background:var(--black);overflow:hidden;display:flex;align-items:center;}
+.atrack{display:flex;white-space:nowrap;will-change:transform;}
+.atrack span{font-size:0.58rem;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,0.8);padding:0 2.5rem;}
+.atrack span::before{content:'•';margin-right:2.5rem;opacity:0.45;}
 
-/* ── HOME ── */
-#home{min-height:100vh;display:flex;flex-direction:column;background:var(--bg);padding-top:calc(var(--ticker-h) + var(--nav-h));}
-.hero-main{flex:1;display:grid;grid-template-columns:55fr 45fr;}
+/* NAV */
+nav{position:fixed;top:var(--ah);left:0;right:0;z-index:1000;height:var(--nh);background:var(--cream);border-bottom:1px solid var(--border);display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:0 3rem;}
+.nav-left,.nav-right{display:flex;align-items:center;gap:2.2rem;}
+.nav-right{justify-content:flex-end;}
+.nav-logo{font-size:1.3rem;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;text-align:center;color:var(--black);cursor:pointer;text-decoration:none;}
+nav a{font-size:0.62rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);text-decoration:none;position:relative;padding-bottom:2px;transition:color 0.2s;}
+nav a:hover,nav a.active{color:var(--black);}
+nav a::after{content:'';position:absolute;bottom:-1px;left:0;width:0;height:1.5px;background:var(--black);transition:width 0.3s ease;}
+nav a:hover::after,nav a.active::after{width:100%;}
 
-/* HERO LEFT */
-.hero-left{display:flex;flex-direction:column;justify-content:center;padding:3rem 3rem 3rem 3.5rem;}
-.hero-eyebrow{display:flex;align-items:center;gap:0.7rem;margin-bottom:1.6rem;}
-.eyebrow-dot{width:7px;height:7px;border-radius:50%;background:var(--accent);animation:blink 1.5s infinite;flex-shrink:0;}
-.eyebrow-text{font-family:'Space Mono',monospace;font-size:0.6rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--muted);}
-.hero-headline{font-size:clamp(4.5rem,8.5vw,8.5rem);font-weight:800;line-height:0.88;letter-spacing:-0.04em;text-transform:uppercase;margin-bottom:1.6rem;}
-.hero-headline .hl-accent{color:var(--accent);}
-.hero-sub{font-size:0.9rem;color:var(--muted);line-height:1.85;margin-bottom:1.8rem;max-width:400px;}
-.hero-pills{display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:2.2rem;}
-.pill{font-size:0.57rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.32rem 0.8rem;background:var(--card);border:1px solid var(--border);color:rgba(255,255,255,0.6);}
-.hero-actions{display:flex;gap:0.8rem;margin-bottom:2.8rem;}
-.btn-accent{background:var(--accent);color:#fff;padding:0.82rem 2rem;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;border:none;cursor:pointer;transition:all 0.2s;}
-.btn-accent:hover{background:#c4177a;transform:translateY(-2px);}
-.btn-outline{background:transparent;color:#fff;padding:0.82rem 2rem;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;border:1px solid rgba(255,255,255,0.3);cursor:pointer;transition:all 0.2s;}
-.btn-outline:hover{border-color:#fff;}
-.hero-stats{display:flex;gap:2.5rem;}
-.stat-item .num{font-size:2.2rem;font-weight:800;line-height:1;letter-spacing:-0.03em;}
-.stat-item .num em{color:var(--accent);font-style:normal;}
-.stat-item .lbl{font-size:0.52rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin-top:0.25rem;}
+/* HOME */
+#home{background:var(--cream);}
 
-/* HERO RIGHT — 2×2 image grid */
-.hero-right{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:2px;background:#1c1410;min-height:calc(100vh - var(--ticker-h) - var(--nav-h));}
-.img-cell{overflow:hidden;position:relative;}
-.img-cell img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.6s ease;}
-.img-cell:hover img{transform:scale(1.05);}
-.info-cell{background:var(--accent);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem;text-align:center;gap:0.3rem;}
-.info-cell .big-num{font-size:4rem;font-weight:800;line-height:1;letter-spacing:-0.05em;}
-.info-cell .big-label{font-size:0.58rem;font-weight:700;letter-spacing:0.25em;text-transform:uppercase;opacity:0.9;}
+/* HERO */
+.hero{position:relative;height:100vh;background:var(--cream);overflow:hidden;}
+.hero-eyebrow{position:absolute;top:calc(var(--off) + 2.5rem);left:4rem;z-index:4;}
+.hero-eyebrow p{font-size:0.62rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--muted);line-height:2.2;}
+.hero-eyebrow p.bold{font-weight:700;color:var(--black);}
+.hero-scroll{position:absolute;top:calc(var(--off) + 2.5rem);right:3.5rem;z-index:4;display:flex;flex-direction:column;align-items:center;gap:0.5rem;opacity:0.35;}
+.hero-scroll span{font-size:0.5rem;letter-spacing:0.25em;text-transform:uppercase;writing-mode:vertical-rl;}
+.hero-scroll-line{width:1px;height:45px;background:var(--black);}
+.hero-bigwrap{position:absolute;left:0;right:0;bottom:24%;z-index:1;padding:0 3rem;overflow:hidden;}
+.hero-big{font-size:clamp(5rem,14.2vw,17rem);font-weight:800;letter-spacing:-0.04em;text-transform:uppercase;line-height:0.88;display:flex;}
+.hero-big .ltr{display:inline-block;overflow:hidden;}
+.hero-big .ltr-i{display:inline-block;}
+.hero-imgwrap{position:absolute;right:9%;bottom:0;z-index:2;width:34%;height:80%;overflow:hidden;}
+.hero-imgwrap img{width:100%;height:100%;object-fit:cover;object-position:50% 15%;display:block;}
+.hero-bot{position:absolute;bottom:3.5rem;left:4rem;right:4rem;z-index:4;display:flex;justify-content:space-between;align-items:flex-end;}
+.hero-bot-l,.hero-bot-r{display:flex;flex-direction:column;gap:0.9rem;}
+.hero-bot-r{text-align:right;align-items:flex-end;}
+.hero-avail{font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);line-height:1.9;}
 
-/* HERO MARQUEE */
-.hero-marquee{background:var(--bg2);border-top:1px solid var(--border);padding:0.65rem 0;overflow:hidden;}
-.marquee-track{display:flex;gap:0;animation:marquee 28s linear infinite;white-space:nowrap;}
-.marquee-track span{font-size:0.58rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--muted);padding:0 1.8rem;}
-.marquee-track span::after{content:'◆';margin-left:1.8rem;font-size:0.28rem;color:var(--accent);}
-@keyframes marquee{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+/* DARK SECTION */
+.dsec{background:var(--black);padding:5rem 3rem;color:#fff;}
+.sec-hdr{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:3rem;}
+.sec-ttl{font-size:clamp(2rem,4.5vw,4rem);font-weight:800;text-transform:uppercase;letter-spacing:-0.03em;line-height:0.9;}
+.sec-lnk{font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.4);cursor:pointer;transition:color 0.2s;border:none;background:none;font-family:'Space Grotesk',sans-serif;}
+.sec-lnk:hover{color:#fff;}
+.sec-lnk.dark{color:var(--muted);}
+.sec-lnk.dark:hover{color:var(--black);}
+.dcards{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
+.dcard{cursor:pointer;}
+.dcard-img{aspect-ratio:2/3;overflow:hidden;background:#2a2a2a;margin-bottom:1.1rem;}
+.dcard-img img{width:100%;height:100%;object-fit:cover;transition:transform 0.6s ease;display:block;}
+.dcard:hover .dcard-img img{transform:scale(1.04);}
+.dcard-num{font-family:'Space Mono',monospace;font-size:0.5rem;color:rgba(255,255,255,0.28);letter-spacing:0.15em;margin-bottom:0.5rem;}
+.dcard-name{font-size:1rem;font-weight:700;text-transform:uppercase;letter-spacing:0.02em;margin-bottom:0.25rem;}
+.dcard-role{font-size:0.66rem;color:rgba(255,255,255,0.42);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.7rem;}
+.dcard-lnk{font-size:0.57rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.65);display:inline-flex;align-items:center;gap:0.5rem;transition:color 0.2s,gap 0.2s;border:none;background:none;font-family:'Space Grotesk',sans-serif;cursor:pointer;}
+.dcard:hover .dcard-lnk{color:#fff;gap:0.9rem;}
+
+/* BANNER */
+.banner{display:grid;grid-template-columns:1fr 1fr;min-height:65vh;background:var(--grey);}
+.banner-l{display:flex;flex-direction:column;justify-content:center;padding:5rem 4rem;}
+.banner-eye{font-size:0.58rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--muted);margin-bottom:1.2rem;}
+.banner-ttl{font-size:clamp(3rem,6.5vw,7rem);font-weight:800;text-transform:uppercase;letter-spacing:-0.04em;line-height:0.87;margin-bottom:1.8rem;}
+.banner-sub{font-size:0.9rem;color:var(--muted);line-height:1.75;margin-bottom:2.5rem;max-width:360px;}
+.banner-r{overflow:hidden;}
+.banner-r img{width:100%;height:100%;object-fit:cover;object-position:60% center;display:block;}
+
+/* FEATURES */
+.fbar{background:var(--cream);border-top:1px solid var(--border);border-bottom:1px solid var(--border);display:grid;grid-template-columns:repeat(4,1fr);}
+.fitem{padding:2.5rem 2rem;border-right:1px solid var(--border);}
+.fitem:last-child{border-right:none;}
+.ficon{font-size:1.3rem;margin-bottom:0.9rem;display:block;}
+.ftitle{font-size:0.63rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;margin-bottom:0.45rem;}
+.fdesc{font-size:0.74rem;color:var(--muted);line-height:1.65;}
+
+/* HOME PROJ GRID */
+.hproj{background:var(--cream);padding:5rem 3rem;}
+.pgrid4{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;}
+.pitem{cursor:pointer;}
+.pimgw{aspect-ratio:3/4;overflow:hidden;position:relative;background:var(--grey);margin-bottom:1rem;}
+.pimgw img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.6s ease;}
+.pitem:hover .pimgw img{transform:scale(1.05);}
+.pov{position:absolute;inset:0;background:rgba(26,26,26,0.42);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity 0.3s;}
+.pitem:hover .pov{opacity:1;}
+.pvbtn{background:#fff;color:var(--black);padding:0.55rem 1.4rem;font-size:0.58rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;border:none;cursor:pointer;}
+.pname{font-size:0.88rem;font-weight:700;text-transform:uppercase;letter-spacing:0.04em;margin-bottom:0.2rem;}
+.prole{font-size:0.64rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;}
+.pdark{background:var(--black);display:flex;align-items:flex-end;padding:1.5rem;}
+.pdark .pname{color:#fff;}
+.pdark .prole{color:rgba(255,255,255,0.45);}
+
+/* BUTTONS */
+.btn-blk{display:inline-block;background:var(--black);color:#fff;padding:0.88rem 2.2rem;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;border:none;cursor:pointer;transition:opacity 0.2s;text-decoration:none;}
+.btn-blk:hover{opacity:0.75;}
+.btn-out{display:inline-block;background:transparent;color:var(--black);padding:0.88rem 2.2rem;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;border:1.5px solid var(--black);cursor:pointer;transition:all 0.2s;text-decoration:none;}
+.btn-out:hover{background:var(--black);color:#fff;}
+.tlnk{font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--black);display:inline-flex;align-items:center;gap:0.5rem;transition:gap 0.2s;cursor:pointer;border:none;background:none;font-family:'Space Grotesk',sans-serif;padding:0;}
+.tlnk:hover{gap:1rem;}
+
+/* PAGES */
+.page{display:none;min-height:100vh;padding-top:var(--off);background:var(--cream);}
+.page.active{display:block;}
+.phero{padding:3.5rem 3rem 3rem;border-bottom:1px solid var(--border);}
+.peyebrow{font-family:'Space Mono',monospace;font-size:0.56rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--muted);margin-bottom:0.55rem;}
+.ptitle{font-size:clamp(3.5rem,8vw,7rem);font-weight:800;text-transform:uppercase;letter-spacing:-0.04em;line-height:0.87;}
+.pcontent{padding:3.5rem 3rem 5rem;}
+
+/* ABOUT */
+.about-split{display:grid;grid-template-columns:1fr 1.1fr;}
+.about-img{position:sticky;top:var(--off);height:calc(100vh - var(--off));overflow:hidden;}
+.about-img img{width:100%;height:100%;object-fit:cover;object-position:50% 15%;display:block;}
+.about-txt{padding:3.5rem;border-left:1px solid var(--border);}
+.aname{font-size:clamp(2.5rem,5vw,4.5rem);font-weight:800;text-transform:uppercase;letter-spacing:-0.03em;line-height:0.88;margin-bottom:0.4rem;}
+.arole{font-size:0.66rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin-bottom:2.5rem;}
+.abio{font-size:0.98rem;line-height:1.9;color:#3a3a3a;margin-bottom:2.5rem;}
+.abio p{margin-bottom:1.1rem;}
+.abio strong{color:var(--black);font-weight:600;}
+.adetails{border-top:1px solid var(--border);padding-top:1.8rem;margin-bottom:2.5rem;}
+.adrow{display:flex;justify-content:space-between;padding:0.75rem 0;border-bottom:1px solid var(--border);font-size:0.82rem;}
+.adkey{font-family:'Space Mono',monospace;font-size:0.54rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);}
+.stags{display:flex;flex-wrap:wrap;gap:0.4rem;}
+.stag{font-size:0.58rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.38rem 0.85rem;border:1px solid var(--border);color:var(--black);background:var(--white);transition:all 0.2s;cursor:default;}
+.stag:hover{background:var(--black);color:#fff;border-color:var(--black);}
+.avail{display:inline-flex;align-items:center;gap:0.5rem;padding:0.5rem 1.2rem;border:1px solid #22c55e;font-size:0.58rem;letter-spacing:0.15em;text-transform:uppercase;color:#22c55e;background:rgba(34,197,94,0.05);margin-top:1.5rem;}
+.dot{width:6px;height:6px;border-radius:50%;background:#22c55e;animation:blink 1.5s infinite;flex-shrink:0;}
 @keyframes blink{0%,100%{opacity:1;}50%{opacity:0.2;}}
 
-/* ── INNER PAGES ── */
-.page{display:none;min-height:100vh;padding:calc(var(--ticker-h) + var(--nav-h) + 3.5rem) 3.5rem 5rem;background:var(--bg);}
-.page.active{display:block;}
-.sec-eyebrow{font-family:'Space Mono',monospace;font-size:0.57rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--accent);margin-bottom:0.5rem;}
-.sec-title{font-size:clamp(3rem,6vw,5.5rem);font-weight:800;text-transform:uppercase;letter-spacing:-0.03em;line-height:0.88;margin-bottom:2.5rem;}
-.divider{height:1px;background:var(--border);margin-bottom:3rem;}
+/* PROJECTS PAGE */
+.pfgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border);}
+.pfcard{background:var(--cream);padding:2.5rem;position:relative;cursor:pointer;transition:background 0.2s;overflow:hidden;}
+.pfcard:hover{background:var(--white);}
+.pfcard::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--black);transform:scaleX(0);transform-origin:left;transition:transform 0.3s;}
+.pfcard:hover::after{transform:scaleX(1);}
+.pfnum{font-family:'Space Mono',monospace;font-size:0.5rem;color:var(--muted);margin-bottom:1.5rem;opacity:0.5;}
+.pfname{font-size:2rem;font-weight:800;text-transform:uppercase;letter-spacing:-0.02em;margin-bottom:0.3rem;}
+.pfrole{font-size:0.64rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.15em;margin-bottom:1rem;}
+.pfdesc{font-size:0.8rem;color:#4a4a4a;line-height:1.7;margin-bottom:1.5rem;}
+.pftags{display:flex;flex-wrap:wrap;gap:0.3rem;}
+.pftag{font-size:0.52rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.2rem 0.55rem;border:1px solid var(--border);color:var(--muted);}
+.pfstat{position:absolute;top:2.5rem;right:2.5rem;display:flex;align-items:center;gap:0.4rem;font-size:0.52rem;letter-spacing:0.1em;text-transform:uppercase;color:#22c55e;}
+.pfarr{position:absolute;bottom:2.5rem;right:2.5rem;font-size:0.58rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);opacity:0;transition:opacity 0.2s;}
+.pfcard:hover .pfarr{opacity:1;}
 
-/* ── ABOUT ── */
-.about-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:5rem;align-items:start;}
-.about-bio{font-size:1rem;line-height:1.9;color:rgba(255,255,255,0.68);}
-.about-bio strong{color:#fff;}
-.about-bio p{margin-bottom:1.2rem;}
-.glass-card{background:var(--card);border:1px solid var(--border);padding:2rem;}
-.detail-row{display:flex;justify-content:space-between;align-items:center;padding:0.85rem 0;border-bottom:1px solid rgba(255,255,255,0.05);font-size:0.82rem;}
-.detail-row:last-child{border-bottom:none;}
-.detail-key{font-family:'Space Mono',monospace;font-size:0.56rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);}
-.detail-val{color:#fff;font-weight:500;}
-.avail-badge{display:inline-flex;align-items:center;gap:0.5rem;background:rgba(34,197,94,0.08);padding:0.5rem 1.2rem;font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;border:1px solid rgba(34,197,94,0.25);margin-top:2rem;color:#22c55e;}
-.dot{width:6px;height:6px;border-radius:50%;background:#22c55e;animation:blink 1.5s infinite;flex-shrink:0;}
+/* SKILLS PAGE */
+.skgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);}
+.skbox{background:var(--cream);padding:2.2rem;}
+.skttl{font-size:0.54rem;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--muted);margin-bottom:1.5rem;padding-bottom:0.9rem;border-bottom:1px solid var(--border);}
+.skrow{display:flex;justify-content:space-between;align-items:center;padding:0.55rem 0;border-bottom:1px solid rgba(0,0,0,0.04);font-size:0.82rem;}
+.skrow:last-child{border-bottom:none;}
+.skpct{font-family:'Space Mono',monospace;font-size:0.57rem;color:var(--muted);}
 
-/* ── PROJECTS ── */
-.projects-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);}
-.proj-card{background:var(--bg);padding:2.5rem;position:relative;overflow:hidden;cursor:pointer;transition:background 0.25s;}
-.proj-card:hover{background:rgba(233,30,140,0.06);}
-.proj-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--accent);transform:scaleX(0);transition:transform 0.3s;transform-origin:left;}
-.proj-card:hover::after{transform:scaleX(1);}
-.proj-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity 0.25s;}
-.proj-card:hover .proj-overlay{opacity:1;}
-.visit-btn{background:var(--accent);color:#fff;padding:0.6rem 1.8rem;font-weight:700;font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;border:none;cursor:pointer;}
-.proj-num{font-family:'Space Mono',monospace;font-size:0.52rem;color:var(--muted);margin-bottom:1.5rem;opacity:0.45;}
-.proj-name{font-size:2rem;font-weight:800;text-transform:uppercase;letter-spacing:-0.02em;margin-bottom:0.35rem;}
-.proj-role{font-size:0.64rem;color:var(--accent);text-transform:uppercase;letter-spacing:0.15em;margin-bottom:1rem;font-weight:600;}
-.proj-desc{font-size:0.78rem;color:rgba(255,255,255,0.52);line-height:1.7;margin-bottom:1.5rem;}
-.proj-tags{display:flex;flex-wrap:wrap;gap:0.3rem;}
-.proj-tag{font-size:0.52rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.2rem 0.55rem;background:var(--card);border:1px solid var(--border);color:var(--muted);}
-.proj-status{position:absolute;top:2.5rem;right:2.5rem;display:flex;align-items:center;gap:0.4rem;font-size:0.52rem;letter-spacing:0.1em;text-transform:uppercase;color:#22c55e;}
+/* CONTACT PAGE */
+.cinner{display:grid;grid-template-columns:1fr 1fr;}
+.cleft{padding:3.5rem;border-right:1px solid var(--border);}
+.ched{font-size:clamp(3.5rem,7vw,7rem);font-weight:800;text-transform:uppercase;letter-spacing:-0.04em;line-height:0.88;margin-bottom:1.5rem;}
+.csub{font-size:0.9rem;color:var(--muted);line-height:1.75;margin-bottom:3rem;max-width:380px;}
+.clitem{display:flex;align-items:center;gap:1rem;padding:1rem 0;border-bottom:1px solid var(--border);font-size:0.82rem;text-decoration:none;color:var(--black);transition:padding-left 0.2s;}
+.clitem:hover{padding-left:0.5rem;}
+.clicon{width:32px;height:32px;display:flex;align-items:center;justify-content:center;border:1px solid var(--border);font-size:0.85rem;flex-shrink:0;}
+.cright{padding:3.5rem;}
+.flbl{display:block;font-size:0.54rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin-bottom:0.5rem;margin-top:1.2rem;}
+.flbl:first-child{margin-top:0;}
+.finp,.fta{width:100%;background:var(--white);border:1px solid var(--border);color:var(--black);padding:0.85rem 1rem;font-family:'Space Grotesk',sans-serif;font-size:0.88rem;outline:none;transition:border-color 0.2s;}
+.finp:focus,.fta:focus{border-color:var(--black);}
+.finp::placeholder,.fta::placeholder{color:#bbb;}
+.fta{height:120px;resize:none;}
 
-/* ── SKILLS ── */
-.skills-wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);}
-.skill-box{background:var(--bg);padding:2rem;}
-.skill-box-title{font-family:'Space Mono',monospace;font-size:0.52rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--accent);margin-bottom:1.5rem;}
-.skill-row{display:flex;justify-content:space-between;align-items:center;padding:0.55rem 0;border-bottom:1px solid rgba(255,255,255,0.04);font-size:0.8rem;}
-.skill-row:last-child{border-bottom:none;}
-.skill-pct{font-family:'Space Mono',monospace;font-size:0.58rem;color:var(--accent);}
+/* RESUME PAGE */
+.reswrap{display:grid;grid-template-columns:1fr 1fr;gap:4rem;}
+.reslbl{font-size:0.54rem;font-weight:700;letter-spacing:0.25em;text-transform:uppercase;color:var(--muted);margin-bottom:1.8rem;padding-bottom:0.8rem;border-bottom:1px solid var(--border);}
+.timeline{border-left:1.5px solid var(--border);padding-left:1.5rem;}
+.tli{position:relative;margin-bottom:2.2rem;}
+.tli::before{content:'';position:absolute;left:-1.68rem;top:6px;width:6px;height:6px;border-radius:50%;background:var(--black);}
+.tly{font-family:'Space Mono',monospace;font-size:0.52rem;color:var(--muted);letter-spacing:0.1em;margin-bottom:0.3rem;}
+.tlt{font-size:0.95rem;font-weight:700;text-transform:uppercase;letter-spacing:0.03em;margin-bottom:0.2rem;}
+.tls{font-size:0.78rem;color:var(--muted);}
+.cgrid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);margin-bottom:2rem;}
+.citem{background:var(--cream);padding:1.2rem;}
+.cname{font-weight:600;font-size:0.85rem;margin-bottom:0.2rem;}
+.csub2{font-size:0.6rem;color:var(--muted);}
 
-/* ── CONTACT ── */
-.contact-wrap{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;}
-.contact-big{font-size:clamp(2rem,5vw,4rem);font-weight:800;text-transform:uppercase;letter-spacing:-0.03em;line-height:0.92;margin-bottom:1.5rem;}
-.contact-sub{color:var(--muted);line-height:1.8;margin-bottom:2.5rem;font-size:0.88rem;}
-.contact-item{display:flex;align-items:center;gap:1rem;padding:1rem 1.2rem;background:var(--card);border:1px solid var(--border);margin-bottom:0.8rem;font-size:0.8rem;text-decoration:none;color:#fff;transition:border-color 0.2s;}
-.contact-item:hover{border-color:var(--accent);}
-.contact-icon{width:34px;height:34px;display:flex;align-items:center;justify-content:center;background:var(--accent-dim);color:var(--accent);font-size:0.9rem;flex-shrink:0;}
-.form-lbl{display:block;font-size:0.53rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin-bottom:0.5rem;margin-top:1.2rem;}
-.form-lbl:first-child{margin-top:0;}
-.form-inp,.form-ta{width:100%;background:var(--card);border:1px solid var(--border);color:#fff;padding:0.85rem 1rem;font-family:'Space Grotesk',sans-serif;font-size:0.88rem;outline:none;transition:border-color 0.2s;}
-.form-inp:focus,.form-ta:focus{border-color:var(--accent);}
-.form-inp::placeholder,.form-ta::placeholder{color:rgba(255,255,255,0.2);}
-.form-ta{height:110px;resize:none;}
-
-/* ── RESUME ── */
-.resume-wrap{display:grid;grid-template-columns:1fr 1fr;gap:4rem;}
-.res-sec-title{font-family:'Space Mono',monospace;font-size:0.52rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--accent);margin-bottom:1.5rem;}
-.timeline{border-left:1px solid rgba(255,255,255,0.1);padding-left:1.5rem;}
-.tl-item{position:relative;margin-bottom:2rem;}
-.tl-item::before{content:'';position:absolute;left:-1.68rem;top:6px;width:6px;height:6px;border-radius:50%;background:var(--accent);}
-.tl-year{font-family:'Space Mono',monospace;font-size:0.52rem;color:var(--accent);margin-bottom:0.3rem;letter-spacing:0.1em;}
-.tl-title{font-size:0.95rem;font-weight:700;margin-bottom:0.2rem;text-transform:uppercase;letter-spacing:0.03em;}
-.tl-sub{font-size:0.78rem;color:rgba(255,255,255,0.45);}
-.cert-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);}
-.cert-item{background:var(--bg);padding:1.2rem;}
-.cert-name{font-weight:600;margin-bottom:0.2rem;font-size:0.85rem;}
-.cert-sub{font-size:0.6rem;color:var(--muted);}
-.btn-white{background:#fff;color:#0d0b09;padding:0.82rem 2rem;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;border:none;cursor:pointer;transition:all 0.2s;}
-.btn-white:hover{background:rgba(255,255,255,0.88);transform:translateY(-2px);}
-.btn-ghost{background:transparent;color:#fff;padding:0.82rem 2rem;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;border:1px solid rgba(255,255,255,0.3);cursor:pointer;transition:all 0.2s;}
-.btn-ghost:hover{border-color:#fff;}
-
-/* ── FOOTER ── */
-footer{text-align:center;padding:2rem 3.5rem;border-top:1px solid var(--border);font-size:0.55rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);background:var(--bg);}
-footer em{color:var(--accent);font-style:normal;}
+/* FOOTER */
+footer{background:var(--black);color:rgba(255,255,255,0.4);text-align:center;padding:2rem 3rem;font-size:0.54rem;letter-spacing:0.15em;text-transform:uppercase;}
 </style>
 </head>
 <body>
 
-<!-- ANNOUNCEMENT TICKER -->
-<div class="ticker-bar">
-  <div class="ticker-track">
-    <span>Available for New Opportunities</span>
-    <span>MIS Executive</span>
-    <span>Business Analyst</span>
-    <span>5 Apps Built &amp; Deployed</span>
-    <span>Open to Work Immediately</span>
-    <span>Internal Tool Developer</span>
-    <span>India</span>
-    <span>Available for New Opportunities</span>
-    <span>MIS Executive</span>
-    <span>Business Analyst</span>
-    <span>5 Apps Built &amp; Deployed</span>
-    <span>Open to Work Immediately</span>
-    <span>Internal Tool Developer</span>
-    <span>India</span>
+<div id="curtain"></div>
+
+<!-- ANNOUNCEMENT BAR -->
+<div class="abar">
+  <div class="atrack" id="atrack">
+    <span>Open to Work</span><span>MIS Executive</span><span>Business Analyst</span><span>Data Analyst</span><span>Internal Tool Developer</span><span>Available Immediately</span><span>India</span><span>5 Apps Deployed</span>
+    <span>Open to Work</span><span>MIS Executive</span><span>Business Analyst</span><span>Data Analyst</span><span>Internal Tool Developer</span><span>Available Immediately</span><span>India</span><span>5 Apps Deployed</span>
   </div>
 </div>
 
-<!-- NAVIGATION -->
+<!-- NAV -->
 <nav>
-  <a href="#" class="nav-logo" onclick="go('home');return false;">AG<em>X</em></a>
-  <div class="nav-links">
-    <a href="#" onclick="go('home');return false;" class="active" id="nav-home">Home</a>
+  <div class="nav-left">
+    <a href="#" onclick="go('home');return false;" id="nav-home" class="active">Home</a>
     <a href="#" onclick="go('about');return false;" id="nav-about">About</a>
     <a href="#" onclick="go('projects');return false;" id="nav-projects">Projects</a>
+  </div>
+  <a href="#" onclick="go('home');return false;" class="nav-logo">AGX</a>
+  <div class="nav-right">
     <a href="#" onclick="go('skills');return false;" id="nav-skills">Skills</a>
     <a href="#" onclick="go('contact');return false;" id="nav-contact">Contact</a>
     <a href="#" onclick="go('resume');return false;" id="nav-resume">Resume</a>
-    <a href="#" onclick="go('contact');return false;" class="nav-hire">Hire Me</a>
   </div>
 </nav>
 
 <!-- ===== HOME ===== -->
 <div id="home">
-  <div class="hero-main">
 
-    <!-- LEFT: Text content -->
-    <div class="hero-left">
-      <div class="hero-eyebrow">
-        <span class="eyebrow-dot"></span>
-        <span class="eyebrow-text">MIS Executive &mdash; MakeMyClicks</span>
-      </div>
-      <div class="hero-headline">
-        <div>BUILD</div>
-        <div>YOUR</div>
-        <div class="hl-accent">WAY</div>
-      </div>
-      <p class="hero-sub">MIS Executive, Business Analyst &amp; Internal Tool Developer. I build real business systems from the ground up — 5 production apps deployed and live.</p>
-      <div class="hero-pills">
-        <span class="pill">MIS Executive</span>
-        <span class="pill">Business Analyst</span>
-        <span class="pill">Data Analyst</span>
-        <span class="pill">Tool Developer</span>
-        <span class="pill">Automation</span>
-      </div>
-      <div class="hero-actions">
-        <button class="btn-accent" onclick="go('projects')">View Projects</button>
-        <button class="btn-outline" onclick="go('contact')">Get In Touch</button>
-      </div>
-      <div class="hero-stats">
-        <div class="stat-item">
-          <div class="num">5<em>+</em></div>
-          <div class="lbl">Apps Live</div>
-        </div>
-        <div class="stat-item">
-          <div class="num">1<em>+</em></div>
-          <div class="lbl">Years Exp.</div>
-        </div>
-        <div class="stat-item">
-          <div class="num">100<em>%</em></div>
-          <div class="lbl">Deployed</div>
-        </div>
-      </div>
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-eyebrow">
+      <p class="bold">Business</p>
+      <p>That Builds</p>
+      <p>Systems.</p>
     </div>
-
-    <!-- RIGHT: 2×2 image grid -->
-    <div class="hero-right">
-      <div class="img-cell">
-        <img src="img1.jpg" alt="Portfolio image 1" style="object-position:50% 15%;">
-      </div>
-      <div class="img-cell">
-        <img src="img2.jpg" alt="Portfolio image 2" style="object-position:60% center;">
-      </div>
-      <div class="img-cell">
-        <img src="img3.jpg" alt="Portfolio image 3" style="object-position:55% 25%;">
-      </div>
-      <div class="info-cell">
-        <div class="big-num">5</div>
-        <div class="big-label">Apps Deployed</div>
-      </div>
+    <div class="hero-scroll">
+      <span>Scroll</span>
+      <div class="hero-scroll-line"></div>
     </div>
-
-  </div>
-
-  <!-- BOTTOM MARQUEE -->
-  <div class="hero-marquee">
-    <div class="marquee-track">
-      <span>PRICEV3</span><span>BIKREE</span><span>KHARIDI</span><span>DISPATCH</span><span>GOODSGURU</span><span>Vercel</span><span>GitHub</span><span>Supabase</span><span>PostgreSQL</span><span>JavaScript</span><span>Vite</span><span>PRICEV3</span><span>BIKREE</span><span>KHARIDI</span><span>DISPATCH</span><span>GOODSGURU</span><span>Vercel</span><span>GitHub</span><span>Supabase</span><span>PostgreSQL</span><span>JavaScript</span><span>Vite</span>
+    <div class="hero-bigwrap">
+      <div class="hero-big" id="hero-big">AUGUSTINE</div>
+    </div>
+    <div class="hero-imgwrap">
+      <img src="img1.jpg" alt="Augustine" id="hero-img">
+    </div>
+    <div class="hero-bot">
+      <div class="hero-bot-l" id="hbl">
+        <button class="btn-blk" onclick="go('projects')">View Projects</button>
+        <button class="tlnk" onclick="go('about')">Explore Work →</button>
+      </div>
+      <div class="hero-bot-r" id="hbr">
+        <p class="hero-avail">Available<br>2025</p>
+      </div>
     </div>
   </div>
+
+  <!-- DARK FEATURED PROJECTS -->
+  <div class="dsec">
+    <div class="sec-hdr">
+      <div class="sec-ttl">Featured<br>Projects</div>
+      <button class="sec-lnk" onclick="go('projects')">View All →</button>
+    </div>
+    <div class="dcards" id="dcards">
+      <div class="dcard" onclick="window.open('https://pricev-3.vercel.app','_blank')">
+        <div class="dcard-img"><img src="img1.jpg" alt="PRICEV3" style="object-position:50% 15%;"></div>
+        <div class="dcard-num">001 / 005</div>
+        <div class="dcard-name">PRICEV3</div>
+        <div class="dcard-role">Price Catalog System</div>
+        <button class="dcard-lnk">VIEW PROJECT →</button>
+      </div>
+      <div class="dcard" onclick="window.open('https://bikree.vercel.app','_blank')">
+        <div class="dcard-img"><img src="img2.jpg" alt="BIKREE" style="object-position:60% center;"></div>
+        <div class="dcard-num">002 / 005</div>
+        <div class="dcard-name">BIKREE</div>
+        <div class="dcard-role">CRM &amp; Sales System</div>
+        <button class="dcard-lnk">VIEW PROJECT →</button>
+      </div>
+      <div class="dcard" onclick="window.open('https://dispatch.vercel.app','_blank')">
+        <div class="dcard-img"><img src="img3.jpg" alt="DISPATCH" style="object-position:55% 25%;"></div>
+        <div class="dcard-num">004 / 005</div>
+        <div class="dcard-name">DISPATCH</div>
+        <div class="dcard-role">Delivery Tracker</div>
+        <button class="dcard-lnk">VIEW PROJECT →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- BANNER -->
+  <div class="banner">
+    <div class="banner-l">
+      <p class="banner-eye">Built for Real Business</p>
+      <div class="banner-ttl">NEW<br>TOOLS</div>
+      <p class="banner-sub">Built with real business logic. Every app solves an actual problem, used daily by teams at MakeMyClicks.</p>
+      <button class="btn-blk" onclick="go('projects')">Explore All Projects</button>
+    </div>
+    <div class="banner-r"><img src="img2.jpg" alt=""></div>
+  </div>
+
+  <!-- FEATURES BAR -->
+  <div class="fbar">
+    <div class="fitem"><span class="ficon">📊</span><div class="ftitle">MIS Reporting</div><div class="fdesc">Excel dashboards, KPI tracking &amp; management reporting systems.</div></div>
+    <div class="fitem"><span class="ficon">🔍</span><div class="ftitle">Business Analysis</div><div class="fdesc">Process mapping, optimization &amp; workflow documentation.</div></div>
+    <div class="fitem"><span class="ficon">📈</span><div class="ftitle">Data Analysis</div><div class="fdesc">PostgreSQL queries, charts, insights &amp; trend analysis.</div></div>
+    <div class="fitem"><span class="ficon">⚙️</span><div class="ftitle">Automation</div><div class="fdesc">Business process automation &amp; internal tool development.</div></div>
+  </div>
+
+  <!-- BEST OF AGX GRID -->
+  <div class="hproj">
+    <div class="sec-hdr" style="margin-bottom:3rem;">
+      <div class="sec-ttl">Best of<br>AGX</div>
+      <button class="sec-lnk dark" onclick="go('projects')">VIEW ALL →</button>
+    </div>
+    <div class="pgrid4" id="pgrid4">
+      <div class="pitem" onclick="window.open('https://pricev-3.vercel.app','_blank')">
+        <div class="pimgw"><img src="img1.jpg" alt="PRICEV3" style="object-position:50% 15%;"><div class="pov"><button class="pvbtn">View Live</button></div></div>
+        <div class="pname">PRICEV3</div><div class="prole">Price Catalog</div>
+      </div>
+      <div class="pitem" onclick="window.open('https://bikree.vercel.app','_blank')">
+        <div class="pimgw"><img src="img2.jpg" alt="BIKREE" style="object-position:60% center;"><div class="pov"><button class="pvbtn">View Live</button></div></div>
+        <div class="pname">BIKREE</div><div class="prole">CRM System</div>
+      </div>
+      <div class="pitem" onclick="window.open('https://kharidi.vercel.app','_blank')">
+        <div class="pimgw"><img src="img3.jpg" alt="KHARIDI" style="object-position:55% 25%;"><div class="pov"><button class="pvbtn">View Live</button></div></div>
+        <div class="pname">KHARIDI</div><div class="prole">Procurement</div>
+      </div>
+      <div class="pitem" onclick="window.open('https://goodsguru.vercel.app','_blank')">
+        <div class="pimgw pdark" style="display:flex;flex-direction:column;justify-content:flex-end;padding:1.5rem;background:var(--black);aspect-ratio:3/4;"><div class="pov"><button class="pvbtn">View Live</button></div><div class="pname" style="color:#fff;">GOODSGURU</div><div class="prole" style="color:rgba(255,255,255,0.45);">Inventory IMS</div></div>
+      </div>
+    </div>
+  </div>
+
+  <footer>© 2025 Augustine — MIS Executive &amp; Business Analyst — Deployed on Vercel</footer>
 </div>
 
 <!-- ===== ABOUT ===== -->
 <div id="about" class="page">
-  <div class="sec-eyebrow">01 / 05</div>
-  <div class="sec-title">About<br>Me.</div>
-  <div class="divider"></div>
-  <div class="about-grid">
-    <div class="about-bio">
-      <p>I'm <strong>Augustine</strong> — a <strong>MIS Executive, Business Analyst &amp; Internal Tool Developer</strong> with hands-on experience building real business systems from the ground up.</p>
-      <p>At <strong>MakeMyClicks</strong>, I designed and deployed <strong>5 production web applications</strong> — a price calculator, CRM, procurement system, dispatch tracker, and inventory management platform — all used daily by the team.</p>
-      <p>My work sits at the intersection of <strong>business operations and technology</strong>. I translate complex workflows into clean, usable software that actually solves problems.</p>
-      <p>Now looking for my next challenge in <strong>MIS, Business Analysis, or Internal Tools development</strong>.</p>
-      <div class="avail-badge"><span class="dot"></span> Open to work — Available immediately</div>
-    </div>
-    <div>
-      <div class="glass-card">
-        <div class="detail-row"><span class="detail-key">Name</span><span class="detail-val">Augustine</span></div>
-        <div class="detail-row"><span class="detail-key">Last Role</span><span class="detail-val">MIS Executive</span></div>
-        <div class="detail-row"><span class="detail-key">Company</span><span class="detail-val">MakeMyClicks</span></div>
-        <div class="detail-row"><span class="detail-key">Experience</span><span class="detail-val">1+ Year</span></div>
-        <div class="detail-row"><span class="detail-key">Location</span><span class="detail-val">India</span></div>
-        <div class="detail-row"><span class="detail-key">Email</span><span class="detail-val">augustine.worky@gmail.com</span></div>
-        <div class="detail-row"><span class="detail-key">Stack</span><span class="detail-val">HTML, JS, Supabase, Vite</span></div>
-        <div class="detail-row"><span class="detail-key">Status</span><span class="detail-val" style="color:#22c55e;">● Open to work</span></div>
+  <div class="about-split">
+    <div class="about-img"><img src="img1.jpg" alt="Augustine"></div>
+    <div class="about-txt">
+      <div class="peyebrow" style="padding-top:0.5rem;">01 / 05</div>
+      <div class="aname">Augus<br>tine</div>
+      <div class="arole">MIS Executive — Business Analyst</div>
+      <div class="abio">
+        <p>I'm <strong>Augustine</strong> — a <strong>MIS Executive, Business Analyst &amp; Internal Tool Developer</strong> with hands-on experience building real business systems from the ground up.</p>
+        <p>At <strong>MakeMyClicks</strong>, I designed and deployed <strong>5 production web applications</strong> — a price calculator, CRM, procurement system, dispatch tracker, and inventory management platform — all used daily by the team.</p>
+        <p>My work sits at the intersection of <strong>business operations and technology</strong>. I translate complex workflows into clean, usable software that actually solves problems.</p>
+        <p>Now looking for my next challenge in <strong>MIS, Business Analysis, or Internal Tools development</strong>.</p>
       </div>
+      <div class="adetails">
+        <div class="adrow"><span class="adkey">Location</span><span>India</span></div>
+        <div class="adrow"><span class="adkey">Last Role</span><span>MIS Executive @ MakeMyClicks</span></div>
+        <div class="adrow"><span class="adkey">Experience</span><span>1+ Year</span></div>
+        <div class="adrow"><span class="adkey">Email</span><span>augustine.worky@gmail.com</span></div>
+        <div class="adrow"><span class="adkey">Stack</span><span>HTML, JS, Supabase, Vite</span></div>
+        <div class="adrow"><span class="adkey">Status</span><span style="color:#22c55e;">● Open to work</span></div>
+      </div>
+      <div class="stags">
+        <span class="stag">MIS Reporting</span><span class="stag">Business Analysis</span><span class="stag">Data Analysis</span><span class="stag">JavaScript</span><span class="stag">Supabase</span><span class="stag">PostgreSQL</span><span class="stag">Vite</span><span class="stag">Automation</span><span class="stag">Excel</span><span class="stag">AI Integration</span>
+      </div>
+      <div class="avail"><span class="dot"></span> Open to work — Available immediately</div>
     </div>
   </div>
 </div>
 
 <!-- ===== PROJECTS ===== -->
 <div id="projects" class="page">
-  <div class="sec-eyebrow">02 / 05</div>
-  <div class="sec-title">Projects<br>Built.</div>
-  <div class="divider"></div>
-  <div class="projects-grid">
-    <div class="proj-card" onclick="window.open('https://pricev-3.vercel.app','_blank')">
-      <div class="proj-num">001 / 005</div>
-      <div class="proj-status"><span class="dot"></span> Live</div>
-      <div class="proj-name">PRICEV3</div>
-      <div class="proj-role">Price Catalog &amp; Calculator</div>
-      <div class="proj-desc">Full-featured price catalog for printing professionals. Role-based access with ADMIN, SALES and EA roles. Cost analysis, margin tracking and product management.</div>
-      <div class="proj-tags"><span class="proj-tag">Vite</span><span class="proj-tag">Supabase</span><span class="proj-tag">Chart.js</span><span class="proj-tag">XLSX</span></div>
-      <div class="proj-overlay"><button class="visit-btn">Visit Live →</button></div>
-    </div>
-    <div class="proj-card" onclick="window.open('https://bikree.vercel.app','_blank')">
-      <div class="proj-num">002 / 005</div>
-      <div class="proj-status"><span class="dot"></span> Live</div>
-      <div class="proj-name">BIKREE</div>
-      <div class="proj-role">CRM &amp; Sales System</div>
-      <div class="proj-desc">End-to-end CRM for sales teams. Lead management, follow-up tracking, customer records, activity logs and sales pipeline management.</div>
-      <div class="proj-tags"><span class="proj-tag">HTML/JS</span><span class="proj-tag">Supabase</span><span class="proj-tag">Lucide</span></div>
-      <div class="proj-overlay"><button class="visit-btn">Visit Live →</button></div>
-    </div>
-    <div class="proj-card" onclick="window.open('https://kharidi.vercel.app','_blank')">
-      <div class="proj-num">003 / 005</div>
-      <div class="proj-status"><span class="dot"></span> Live</div>
-      <div class="proj-name">KHARIDI</div>
-      <div class="proj-role">Procurement System</div>
-      <div class="proj-desc">Procurement management with AI-powered assistance. Purchase order tracking, vendor management and spend analytics powered by Gemini AI.</div>
-      <div class="proj-tags"><span class="proj-tag">HTML/JS</span><span class="proj-tag">Supabase</span><span class="proj-tag">Gemini AI</span></div>
-      <div class="proj-overlay"><button class="visit-btn">Visit Live →</button></div>
-    </div>
-    <div class="proj-card" onclick="window.open('https://dispatch.vercel.app','_blank')">
-      <div class="proj-num">004 / 005</div>
-      <div class="proj-status"><span class="dot"></span> Live</div>
-      <div class="proj-name">DISPATCH</div>
-      <div class="proj-role">Dispatch &amp; Delivery Tracker</div>
-      <div class="proj-desc">Real-time dispatch and delivery tracking system with PWA support. Route management, live status updates, multi-language and offline capability.</div>
-      <div class="proj-tags"><span class="proj-tag">PWA</span><span class="proj-tag">Supabase</span><span class="proj-tag">Service Worker</span></div>
-      <div class="proj-overlay"><button class="visit-btn">Visit Live →</button></div>
-    </div>
-    <div class="proj-card" onclick="window.open('https://goodsguru.vercel.app','_blank')" style="grid-column:span 2;">
-      <div class="proj-num">005 / 005</div>
-      <div class="proj-status"><span class="dot"></span> Live</div>
-      <div class="proj-name">GOODSGURU</div>
-      <div class="proj-role">Smart Inventory Management System</div>
-      <div class="proj-desc">Full inventory management platform with ageing reports, vendor performance analytics, smart reorder alerts, purchase orders, sales tracking and AI audit tools.</div>
-      <div class="proj-tags"><span class="proj-tag">Vite</span><span class="proj-tag">Supabase</span><span class="proj-tag">Analytics</span><span class="proj-tag">AI Audit</span></div>
-      <div class="proj-overlay"><button class="visit-btn">Visit Live →</button></div>
+  <div class="phero"><div class="peyebrow">02 / 05</div><div class="ptitle">Projects<br>Built.</div></div>
+  <div class="pcontent">
+    <div class="pfgrid">
+      <div class="pfcard" onclick="window.open('https://pricev-3.vercel.app','_blank')">
+        <div class="pfnum">001 / 005</div><div class="pfstat"><span class="dot"></span> Live</div>
+        <div class="pfname">PRICEV3</div><div class="pfrole">Price Catalog &amp; Calculator</div>
+        <div class="pfdesc">Full-featured price catalog for printing professionals. Role-based access with ADMIN, SALES and EA roles. Cost analysis, margin tracking and product management.</div>
+        <div class="pftags"><span class="pftag">Vite</span><span class="pftag">Supabase</span><span class="pftag">Chart.js</span><span class="pftag">XLSX</span></div>
+        <div class="pfarr">Visit Live →</div>
+      </div>
+      <div class="pfcard" onclick="window.open('https://bikree.vercel.app','_blank')">
+        <div class="pfnum">002 / 005</div><div class="pfstat"><span class="dot"></span> Live</div>
+        <div class="pfname">BIKREE</div><div class="pfrole">CRM &amp; Sales System</div>
+        <div class="pfdesc">End-to-end CRM for sales teams. Lead management, follow-up tracking, customer records, activity logs and sales pipeline management.</div>
+        <div class="pftags"><span class="pftag">HTML/JS</span><span class="pftag">Supabase</span><span class="pftag">Lucide</span></div>
+        <div class="pfarr">Visit Live →</div>
+      </div>
+      <div class="pfcard" onclick="window.open('https://kharidi.vercel.app','_blank')">
+        <div class="pfnum">003 / 005</div><div class="pfstat"><span class="dot"></span> Live</div>
+        <div class="pfname">KHARIDI</div><div class="pfrole">Procurement System</div>
+        <div class="pfdesc">Procurement management with AI-powered assistance. Purchase order tracking, vendor management and spend analytics powered by Gemini AI.</div>
+        <div class="pftags"><span class="pftag">HTML/JS</span><span class="pftag">Supabase</span><span class="pftag">Gemini AI</span></div>
+        <div class="pfarr">Visit Live →</div>
+      </div>
+      <div class="pfcard" onclick="window.open('https://dispatch.vercel.app','_blank')">
+        <div class="pfnum">004 / 005</div><div class="pfstat"><span class="dot"></span> Live</div>
+        <div class="pfname">DISPATCH</div><div class="pfrole">Dispatch &amp; Delivery Tracker</div>
+        <div class="pfdesc">Real-time dispatch and delivery tracking system with PWA support. Route management, live status updates, multi-language and offline capability.</div>
+        <div class="pftags"><span class="pftag">PWA</span><span class="pftag">Supabase</span><span class="pftag">Service Worker</span></div>
+        <div class="pfarr">Visit Live →</div>
+      </div>
+      <div class="pfcard" onclick="window.open('https://goodsguru.vercel.app','_blank')" style="grid-column:span 2;">
+        <div class="pfnum">005 / 005</div><div class="pfstat"><span class="dot"></span> Live</div>
+        <div class="pfname">GOODSGURU</div><div class="pfrole">Smart Inventory Management System</div>
+        <div class="pfdesc">Full inventory management platform with ageing reports, vendor performance analytics, smart reorder alerts, purchase orders, sales tracking and AI audit tools.</div>
+        <div class="pftags"><span class="pftag">Vite</span><span class="pftag">Supabase</span><span class="pftag">Analytics</span><span class="pftag">AI Audit</span></div>
+        <div class="pfarr">Visit Live →</div>
+      </div>
     </div>
   </div>
 </div>
 
 <!-- ===== SKILLS ===== -->
 <div id="skills" class="page">
-  <div class="sec-eyebrow">03 / 05</div>
-  <div class="sec-title">Skills &amp;<br>Stack.</div>
-  <div class="divider"></div>
-  <div class="skills-wrap">
-    <div class="skill-box">
-      <div class="skill-box-title">Frontend</div>
-      <div class="skill-row"><span>HTML / CSS</span><span class="skill-pct">95%</span></div>
-      <div class="skill-row"><span>JavaScript</span><span class="skill-pct">88%</span></div>
-      <div class="skill-row"><span>Vite</span><span class="skill-pct">80%</span></div>
-      <div class="skill-row"><span>Responsive Design</span><span class="skill-pct">85%</span></div>
-      <div class="skill-row"><span>Chart.js</span><span class="skill-pct">78%</span></div>
-    </div>
-    <div class="skill-box">
-      <div class="skill-box-title">Backend &amp; DB</div>
-      <div class="skill-row"><span>Supabase</span><span class="skill-pct">90%</span></div>
-      <div class="skill-row"><span>PostgreSQL</span><span class="skill-pct">78%</span></div>
-      <div class="skill-row"><span>REST APIs</span><span class="skill-pct">75%</span></div>
-      <div class="skill-row"><span>Row Level Security</span><span class="skill-pct">80%</span></div>
-    </div>
-    <div class="skill-box">
-      <div class="skill-box-title">Business</div>
-      <div class="skill-row"><span>Business Analysis</span><span class="skill-pct">92%</span></div>
-      <div class="skill-row"><span>MIS Reporting</span><span class="skill-pct">90%</span></div>
-      <div class="skill-row"><span>Data Analysis</span><span class="skill-pct">85%</span></div>
-      <div class="skill-row"><span>Process Automation</span><span class="skill-pct">82%</span></div>
-      <div class="skill-row"><span>Excel / Sheets</span><span class="skill-pct">95%</span></div>
-    </div>
-    <div class="skill-box">
-      <div class="skill-box-title">DevOps &amp; Tools</div>
-      <div class="skill-row"><span>Git / GitHub</span><span class="skill-pct">80%</span></div>
-      <div class="skill-row"><span>Vercel</span><span class="skill-pct">85%</span></div>
-      <div class="skill-row"><span>VS Code</span><span class="skill-pct">90%</span></div>
-      <div class="skill-row"><span>PWA</span><span class="skill-pct">72%</span></div>
-    </div>
-    <div class="skill-box">
-      <div class="skill-box-title">AI &amp; Integration</div>
-      <div class="skill-row"><span>Gemini API</span><span class="skill-pct">75%</span></div>
-      <div class="skill-row"><span>Claude AI</span><span class="skill-pct">80%</span></div>
-      <div class="skill-row"><span>AI Prompting</span><span class="skill-pct">88%</span></div>
-      <div class="skill-row"><span>Serverless Functions</span><span class="skill-pct">70%</span></div>
-    </div>
-    <div class="skill-box">
-      <div class="skill-box-title">Domain</div>
-      <div class="skill-row"><span>Procurement</span><span class="skill-pct">88%</span></div>
-      <div class="skill-row"><span>Inventory Mgmt</span><span class="skill-pct">85%</span></div>
-      <div class="skill-row"><span>Sales CRM</span><span class="skill-pct">82%</span></div>
-      <div class="skill-row"><span>Pricing Systems</span><span class="skill-pct">90%</span></div>
+  <div class="phero"><div class="peyebrow">03 / 05</div><div class="ptitle">Skills &amp;<br>Stack.</div></div>
+  <div class="pcontent">
+    <div class="skgrid">
+      <div class="skbox"><div class="skttl">Frontend</div><div class="skrow"><span>HTML / CSS</span><span class="skpct">95%</span></div><div class="skrow"><span>JavaScript</span><span class="skpct">88%</span></div><div class="skrow"><span>Vite</span><span class="skpct">80%</span></div><div class="skrow"><span>Responsive Design</span><span class="skpct">85%</span></div><div class="skrow"><span>Chart.js</span><span class="skpct">78%</span></div></div>
+      <div class="skbox"><div class="skttl">Backend &amp; DB</div><div class="skrow"><span>Supabase</span><span class="skpct">90%</span></div><div class="skrow"><span>PostgreSQL</span><span class="skpct">78%</span></div><div class="skrow"><span>REST APIs</span><span class="skpct">75%</span></div><div class="skrow"><span>Row Level Security</span><span class="skpct">80%</span></div></div>
+      <div class="skbox"><div class="skttl">Business</div><div class="skrow"><span>Business Analysis</span><span class="skpct">92%</span></div><div class="skrow"><span>MIS Reporting</span><span class="skpct">90%</span></div><div class="skrow"><span>Data Analysis</span><span class="skpct">85%</span></div><div class="skrow"><span>Process Automation</span><span class="skpct">82%</span></div><div class="skrow"><span>Excel / Sheets</span><span class="skpct">95%</span></div></div>
+      <div class="skbox"><div class="skttl">DevOps &amp; Tools</div><div class="skrow"><span>Git / GitHub</span><span class="skpct">80%</span></div><div class="skrow"><span>Vercel</span><span class="skpct">85%</span></div><div class="skrow"><span>VS Code</span><span class="skpct">90%</span></div><div class="skrow"><span>PWA</span><span class="skpct">72%</span></div></div>
+      <div class="skbox"><div class="skttl">AI &amp; Integration</div><div class="skrow"><span>Gemini API</span><span class="skpct">75%</span></div><div class="skrow"><span>Claude AI</span><span class="skpct">80%</span></div><div class="skrow"><span>AI Prompting</span><span class="skpct">88%</span></div><div class="skrow"><span>Serverless</span><span class="skpct">70%</span></div></div>
+      <div class="skbox"><div class="skttl">Domain</div><div class="skrow"><span>Procurement</span><span class="skpct">88%</span></div><div class="skrow"><span>Inventory Mgmt</span><span class="skpct">85%</span></div><div class="skrow"><span>Sales CRM</span><span class="skpct">82%</span></div><div class="skrow"><span>Pricing Systems</span><span class="skpct">90%</span></div></div>
     </div>
   </div>
 </div>
 
 <!-- ===== CONTACT ===== -->
 <div id="contact" class="page">
-  <div class="sec-eyebrow">04 / 05</div>
-  <div class="sec-title">Let's<br>Connect.</div>
-  <div class="divider"></div>
-  <div class="contact-wrap">
-    <div>
-      <p class="contact-big">Open to<br>New Roles.</p>
-      <p class="contact-sub">Looking for opportunities in MIS, Business Analysis, Data Analysis, or Internal Tool Development. Available for full-time roles, freelance, or consulting.</p>
-      <a class="contact-item" href="mailto:augustine.worky@gmail.com"><div class="contact-icon">✉</div><span>augustine.worky@gmail.com</span></a>
-      <a class="contact-item" href="https://github.com/augustineworky-cell" target="_blank"><div class="contact-icon">⌥</div><span>github.com/augustineworky-cell</span></a>
-      <a class="contact-item" href="#"><div class="contact-icon">in</div><span>LinkedIn — Coming Soon</span></a>
+  <div class="phero"><div class="peyebrow">04 / 05</div><div class="ptitle">Let's<br>Talk.</div></div>
+  <div class="cinner">
+    <div class="cleft">
+      <p class="csub">Looking for opportunities in MIS, Business Analysis, Data Analysis, or Internal Tool Development. Available for full-time, freelance, or consulting.</p>
+      <a class="clitem" href="mailto:augustine.worky@gmail.com"><div class="clicon">✉</div><span>augustine.worky@gmail.com</span></a>
+      <a class="clitem" href="https://github.com/augustineworky-cell" target="_blank"><div class="clicon">⌥</div><span>github.com/augustineworky-cell</span></a>
+      <a class="clitem" href="#"><div class="clicon">in</div><span>LinkedIn — Coming Soon</span></a>
     </div>
-    <div>
-      <label class="form-lbl">Your Name</label>
-      <input class="form-inp" id="contact-name" type="text" placeholder="John Doe">
-      <label class="form-lbl">Email</label>
-      <input class="form-inp" id="contact-email" type="email" placeholder="john@company.com">
-      <label class="form-lbl">Message</label>
-      <textarea class="form-ta" id="contact-message" placeholder="Tell me about the opportunity..."></textarea>
-      <button class="btn-accent" style="margin-top:1.2rem;width:100%;" onclick="sendMessage()">Send Message</button>
+    <div class="cright">
+      <label class="flbl">Your Name</label><input class="finp" id="contact-name" type="text" placeholder="John Doe">
+      <label class="flbl">Email</label><input class="finp" id="contact-email" type="email" placeholder="john@company.com">
+      <label class="flbl">Message</label><textarea class="fta" id="contact-message" placeholder="Tell me about the opportunity..."></textarea>
+      <button class="btn-blk" style="margin-top:1.2rem;width:100%;" onclick="sendMessage()">Send Message</button>
     </div>
   </div>
 </div>
 
 <!-- ===== RESUME ===== -->
 <div id="resume" class="page">
-  <div class="sec-eyebrow">05 / 05</div>
-  <div class="sec-title">Resume &amp;<br>Experience.</div>
-  <div class="divider"></div>
-  <div class="resume-wrap">
-    <div>
-      <div class="res-sec-title">Work Experience</div>
-      <div class="timeline">
-        <div class="tl-item"><div class="tl-year">2024 — 2025</div><div class="tl-title">MIS Executive</div><div class="tl-sub">MakeMyClicks — Built &amp; deployed 5 production web apps</div></div>
-        <div class="tl-item"><div class="tl-year">2024</div><div class="tl-title">Internal Tool Developer</div><div class="tl-sub">MakeMyClicks — Price calculator, CRM, procurement, dispatch &amp; inventory</div></div>
-        <div class="tl-item"><div class="tl-year">2024</div><div class="tl-title">Business &amp; Data Analyst</div><div class="tl-sub">MakeMyClicks — MIS reporting, data analysis &amp; process automation</div></div>
+  <div class="phero"><div class="peyebrow">05 / 05</div><div class="ptitle">Resume &amp;<br>Experience.</div></div>
+  <div class="pcontent">
+    <div class="reswrap">
+      <div>
+        <div class="reslbl">Work Experience</div>
+        <div class="timeline">
+          <div class="tli"><div class="tly">2024 — 2025</div><div class="tlt">MIS Executive</div><div class="tls">MakeMyClicks — Built &amp; deployed 5 production web apps</div></div>
+          <div class="tli"><div class="tly">2024</div><div class="tlt">Internal Tool Developer</div><div class="tls">MakeMyClicks — Price calculator, CRM, procurement, dispatch &amp; inventory</div></div>
+          <div class="tli"><div class="tly">2024</div><div class="tlt">Business &amp; Data Analyst</div><div class="tls">MakeMyClicks — MIS reporting, data analysis &amp; process automation</div></div>
+        </div>
+        <div class="reslbl" style="margin-top:2.5rem;">Projects Built</div>
+        <div class="timeline">
+          <div class="tli"><div class="tlt">PRICEV3</div><div class="tls">Price catalog with role-based access &amp; margin tracking</div></div>
+          <div class="tli"><div class="tlt">BIKREE</div><div class="tls">Full CRM with lead management &amp; sales pipeline</div></div>
+          <div class="tli"><div class="tlt">KHARIDI</div><div class="tls">AI-powered procurement &amp; purchase order system</div></div>
+          <div class="tli"><div class="tlt">DISPATCH</div><div class="tls">PWA delivery tracker with real-time updates</div></div>
+          <div class="tli"><div class="tlt">GOODSGURU</div><div class="tls">Smart IMS with ageing reports &amp; vendor analytics</div></div>
+        </div>
       </div>
-      <div class="res-sec-title" style="margin-top:2.5rem;">Projects Built</div>
-      <div class="timeline">
-        <div class="tl-item"><div class="tl-title">PRICEV3</div><div class="tl-sub">Price catalog with role-based access &amp; margin tracking</div></div>
-        <div class="tl-item"><div class="tl-title">BIKREE</div><div class="tl-sub">Full CRM with lead management &amp; sales pipeline</div></div>
-        <div class="tl-item"><div class="tl-title">KHARIDI</div><div class="tl-sub">AI-powered procurement &amp; purchase order system</div></div>
-        <div class="tl-item"><div class="tl-title">DISPATCH</div><div class="tl-sub">PWA delivery tracker with real-time updates</div></div>
-        <div class="tl-item"><div class="tl-title">GOODSGURU</div><div class="tl-sub">Smart IMS with ageing reports &amp; vendor analytics</div></div>
-      </div>
-    </div>
-    <div>
-      <div class="res-sec-title">Core Skills</div>
-      <div class="cert-grid">
-        <div class="cert-item"><div class="cert-name">MIS Reporting</div><div class="cert-sub">Excel, Dashboards, KPIs</div></div>
-        <div class="cert-item"><div class="cert-name">Business Analysis</div><div class="cert-sub">Process mapping &amp; optimization</div></div>
-        <div class="cert-item"><div class="cert-name">Data Analysis</div><div class="cert-sub">PostgreSQL, Charts, Insights</div></div>
-        <div class="cert-item"><div class="cert-name">Tool Development</div><div class="cert-sub">HTML, JS, Vite, Supabase</div></div>
-        <div class="cert-item"><div class="cert-name">Automation</div><div class="cert-sub">Workflow &amp; process automation</div></div>
-        <div class="cert-item"><div class="cert-name">AI Integration</div><div class="cert-sub">Gemini API, Claude AI</div></div>
-      </div>
-      <div class="res-sec-title" style="margin-top:2.5rem;">Deployment Stack</div>
-      <div class="cert-grid">
-        <div class="cert-item"><div class="cert-name">Vercel</div><div class="cert-sub">5 apps deployed &amp; live</div></div>
-        <div class="cert-item"><div class="cert-name">GitHub</div><div class="cert-sub">Version control &amp; CI/CD</div></div>
-        <div class="cert-item"><div class="cert-name">Supabase</div><div class="cert-sub">Backend, Auth &amp; DB</div></div>
-        <div class="cert-item"><div class="cert-name">PWA</div><div class="cert-sub">Offline-capable web apps</div></div>
-      </div>
-      <div style="margin-top:2.5rem;display:flex;gap:1rem;">
-        <button class="btn-accent" onclick="downloadCV()">Download CV PDF</button>
-        <button class="btn-ghost" onclick="go('contact')">Contact Me</button>
+      <div>
+        <div class="reslbl">Core Skills</div>
+        <div class="cgrid">
+          <div class="citem"><div class="cname">MIS Reporting</div><div class="csub2">Excel, Dashboards, KPIs</div></div>
+          <div class="citem"><div class="cname">Business Analysis</div><div class="csub2">Process mapping &amp; optimization</div></div>
+          <div class="citem"><div class="cname">Data Analysis</div><div class="csub2">PostgreSQL, Charts, Insights</div></div>
+          <div class="citem"><div class="cname">Tool Development</div><div class="csub2">HTML, JS, Vite, Supabase</div></div>
+          <div class="citem"><div class="cname">Automation</div><div class="csub2">Workflow &amp; process automation</div></div>
+          <div class="citem"><div class="cname">AI Integration</div><div class="csub2">Gemini API, Claude AI</div></div>
+        </div>
+        <div class="reslbl">Deployment Stack</div>
+        <div class="cgrid">
+          <div class="citem"><div class="cname">Vercel</div><div class="csub2">5 apps deployed &amp; live</div></div>
+          <div class="citem"><div class="cname">GitHub</div><div class="csub2">Version control &amp; CI/CD</div></div>
+          <div class="citem"><div class="cname">Supabase</div><div class="csub2">Backend, Auth &amp; DB</div></div>
+          <div class="citem"><div class="cname">PWA</div><div class="csub2">Offline-capable web apps</div></div>
+        </div>
+        <div style="display:flex;gap:1rem;margin-top:2rem;">
+          <button class="btn-blk" onclick="downloadCV()">Download CV PDF</button>
+          <button class="btn-out" onclick="go('contact')">Contact Me</button>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
-<footer>© 2025 <em>Augustine</em> — Built with HTML, JS &amp; Deployed on Vercel</footer>
-
-<!-- SCRIPTS -->
+<!-- GSAP -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 <script src="app.js"></script>
 <script src="home.js"></script>
 <script src="about.js"></script>
@@ -484,5 +511,72 @@ footer em{color:var(--accent);font-style:normal;}
 <script src="skills.js"></script>
 <script src="contact.js"></script>
 <script src="resume.js"></script>
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+/* ── ANNOUNCE MARQUEE ── */
+(function(){
+  const t = document.getElementById('atrack');
+  if(!t) return;
+  const w = t.scrollWidth / 2;
+  gsap.to(t, {x: -w, duration: 22, ease: 'none', repeat: -1});
+})();
+
+/* ── HERO LETTER REVEAL ── */
+function initHero(){
+  const big = document.getElementById('hero-big');
+  if(!big) return;
+  const chars = big.textContent.split('');
+  big.innerHTML = chars.map(c =>
+    `<span class="ltr"><span class="ltr-i">${c}</span></span>`
+  ).join('');
+
+  const tl = gsap.timeline({defaults:{ease:'power4.out'}});
+  tl.from('#hero-big .ltr-i', {y:'110%', duration:0.9, stagger:0.055, delay:0.15})
+    .fromTo('#hero-img', {x:'100%', opacity:0}, {x:'0%', opacity:1, duration:1.1, ease:'power3.out'}, '-=0.5')
+    .from('#hbl', {y:20, opacity:0, duration:0.6}, '-=0.4')
+    .from('#hbr', {opacity:0, duration:0.5}, '-=0.4');
+}
+
+/* ── SCROLL ANIMATIONS ── */
+function initScroll(){
+  gsap.from('#dcards .dcard', {
+    scrollTrigger:{trigger:'#dcards', start:'top 82%'},
+    y:50, opacity:0, duration:0.7, stagger:0.13, ease:'power2.out'
+  });
+  gsap.from('.banner-ttl', {
+    scrollTrigger:{trigger:'.banner', start:'top 78%'},
+    y:60, opacity:0, duration:0.9, ease:'power3.out'
+  });
+  gsap.from('.fitem', {
+    scrollTrigger:{trigger:'.fbar', start:'top 85%'},
+    y:30, opacity:0, duration:0.6, stagger:0.1, ease:'power2.out'
+  });
+  gsap.from('#pgrid4 .pitem', {
+    scrollTrigger:{trigger:'#pgrid4', start:'top 82%'},
+    y:40, opacity:0, duration:0.7, stagger:0.1, ease:'power2.out'
+  });
+}
+
+/* ── PAGE-IN ANIMATIONS (called by app.js) ── */
+function animatePageIn(id){
+  if(id === 'home'){ initHero(); return; }
+  const pg = document.getElementById(id);
+  if(!pg) return;
+  gsap.from(pg.querySelector('.ptitle, .aname'), {
+    y:40, opacity:0, duration:0.7, ease:'power3.out', delay:0.1
+  });
+  const cards = pg.querySelectorAll('.pfcard,.skbox,.citem,.tli,.stag');
+  if(cards.length){
+    gsap.from(cards, {y:30, opacity:0, duration:0.5, stagger:0.07, ease:'power2.out', delay:0.2});
+  }
+}
+
+/* ── INIT ── */
+document.addEventListener('DOMContentLoaded', ()=>{
+  initHero();
+  setTimeout(initScroll, 200);
+});
+</script>
 </body>
 </html>
