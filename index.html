@@ -217,6 +217,32 @@ nav a:hover::after,nav a.active::after{width:100%;}
 
 /* FOOTER */
 footer{background:var(--black);color:rgba(255,255,255,0.4);text-align:center;padding:2rem 3rem;font-size:0.54rem;letter-spacing:0.15em;text-transform:uppercase;}
+
+/* BCI PAGE */
+#bci{background:#0a0f14;color:#fff;padding:var(--off) 3rem 5rem;}
+.sec-eyebrow{font-family:'Space Mono',monospace;font-size:0.58rem;letter-spacing:0.3em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:0.8rem;}
+.sec-title{font-size:clamp(2.5rem,6vw,5rem);font-weight:800;text-transform:uppercase;letter-spacing:-0.03em;line-height:0.88;margin-bottom:1rem;}
+.divider{height:1px;background:rgba(255,255,255,0.1);margin:1.5rem 0 3rem;}
+.glass-card{background:rgba(255,255,255,0.04);border:0.5px solid rgba(255,255,255,0.12);padding:2rem;}
+.detail-row{display:flex;justify-content:space-between;align-items:center;padding:0.8rem 0;border-bottom:0.5px solid rgba(255,255,255,0.07);font-size:0.82rem;}
+.detail-row:last-child{border-bottom:none;}
+.detail-key{font-family:'Space Mono',monospace;font-size:0.52rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.4);}
+.detail-val{color:rgba(255,255,255,0.85);font-size:0.8rem;}
+.projects-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:rgba(255,255,255,0.08);}
+.proj-card{background:#0a0f14;padding:2.5rem;}
+.proj-num{font-family:'Space Mono',monospace;font-size:0.5rem;color:rgba(255,255,255,0.3);letter-spacing:0.15em;margin-bottom:1rem;}
+.proj-name{font-size:1.8rem;font-weight:800;text-transform:uppercase;letter-spacing:-0.02em;margin-bottom:0.3rem;}
+.proj-role{font-size:0.62rem;color:rgba(255,255,255,0.45);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:1rem;}
+.proj-desc{font-size:0.8rem;color:rgba(255,255,255,0.6);line-height:1.7;margin-bottom:1.5rem;}
+.proj-tags{display:flex;flex-wrap:wrap;gap:0.3rem;}
+.proj-tag{font-size:0.52rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.2rem 0.55rem;border:0.5px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.5);}
+.skill-box{background:rgba(255,255,255,0.03);border:0.5px solid rgba(255,255,255,0.08);padding:2rem;}
+.skill-box-title{font-family:'Space Mono',monospace;font-size:0.52rem;letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:1.2rem;padding-bottom:0.8rem;border-bottom:0.5px solid rgba(255,255,255,0.08);}
+.skill-row{display:flex;justify-content:space-between;align-items:center;padding:0.5rem 0;border-bottom:0.5px solid rgba(255,255,255,0.05);font-size:0.82rem;}
+.skill-row:last-child{border-bottom:none;}
+.skill-pct{font-family:'Space Mono',monospace;font-size:0.57rem;color:rgba(255,255,255,0.5);}
+.btn-ghost{display:inline-block;background:transparent;color:#fff;padding:0.9rem 2.5rem;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;border:1.5px solid rgba(255,255,255,0.3);cursor:pointer;transition:all 0.2s;}
+.btn-ghost:hover{background:rgba(255,255,255,0.08);}
 </style>
 </head>
 <body>
@@ -245,6 +271,7 @@ footer{background:var(--black);color:rgba(255,255,255,0.4);text-align:center;pad
     <a href="#" onclick="go('skills');return false;" id="nav-skills">Skills</a>
     <a href="#" onclick="go('contact');return false;" id="nav-contact">Contact</a>
     <a href="#" onclick="go('resume');return false;" id="nav-resume">Resume</a>
+    <a href="#" onclick="go('bci');return false;" id="nav-bci">[ BCI ]</a>
   </div>
 </nav>
 
@@ -510,6 +537,115 @@ footer{background:var(--black);color:rgba(255,255,255,0.4);text-align:center;pad
       </div>
     </div>
   </div>
+</div>
+
+<!-- ===== BCI ===== -->
+<div id="bci" class="page">
+
+  <!-- HERO BANNER -->
+  <div style="width:100%;height:420px;background-image:url('https://i.ibb.co/nqSwCwRn/Chat-GPT-Image-Jun-26-2026-10-18-43-AM.png');background-size:cover;background-position:center top;position:relative;margin:-6rem -3rem 3rem -3rem;width:calc(100% + 6rem);">
+    <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0.3),rgba(10,15,20,1));"></div>
+    <div style="position:absolute;bottom:2rem;left:3rem;">
+      <div style="font-family:'Space Mono',monospace;font-size:0.6rem;letter-spacing:0.3em;color:rgba(255,255,255,0.5);margin-bottom:0.5rem;">[ FEATURED MENTOR ]</div>
+      <div style="font-size:2.5rem;font-weight:800;text-transform:uppercase;letter-spacing:-0.02em;">Business Coaching India</div>
+      <div style="font-size:0.9rem;color:rgba(255,255,255,0.6);margin-top:0.3rem;">Run Your Business Operation — Working One Day In A Week</div>
+    </div>
+  </div>
+
+  <!-- ABOUT BCI -->
+  <div class="sec-eyebrow">[ About BCI ]</div>
+  <div class="sec-title">Business<br>Automation.</div>
+  <div class="divider"></div>
+
+  <div style="display:grid;grid-template-columns:1.2fr 1fr;gap:4rem;margin-bottom:4rem;">
+    <div style="font-size:1rem;line-height:1.9;color:rgba(255,255,255,0.7);">
+      <p style="margin-bottom:1.2rem;"><strong style="color:#fff;">BCI — Business Coaching India</strong> is founded by <strong style="color:#fff;">Rahul Jain</strong>, a business automation expert who teaches entrepreneurs how to run their entire business operations using <strong style="color:#fff;">Google Sheets + AppScript</strong>.</p>
+      <p style="margin-bottom:1.2rem;">BCI's core philosophy: <strong style="color:#fff;">You don't need expensive software.</strong> Every business system — from inventory to accounts to flow management — can be built inside Google Sheets with the right automation.</p>
+      <p style="margin-bottom:1.2rem;">Their signature systems replace traditional software with powerful, customizable, zero-cost solutions that business owners fully control.</p>
+    </div>
+    <div class="glass-card">
+      <div class="detail-row"><span class="detail-key">Founder</span><span class="detail-val">Rahul Jain</span></div>
+      <div class="detail-row"><span class="detail-key">Helpline</span><span class="detail-val">9560 806 807</span></div>
+      <div class="detail-row"><span class="detail-key">Platform</span><span class="detail-val">Google Sheets + AppScript</span></div>
+      <div class="detail-row"><span class="detail-key">Focus</span><span class="detail-val">Business Automation</span></div>
+      <div class="detail-row"><span class="detail-key">Method</span><span class="detail-val">FMS / IMS / Checklists</span></div>
+      <div class="detail-row"><span class="detail-key">Goal</span><span class="detail-val">Work 1 Day Per Week</span></div>
+    </div>
+  </div>
+
+  <!-- SYSTEMS -->
+  <div class="sec-eyebrow">[ Core Systems ]</div>
+  <div class="sec-title">BCI<br>Systems.</div>
+  <div class="divider"></div>
+
+  <div class="projects-grid" style="margin-bottom:4rem;">
+    <div class="proj-card">
+      <div class="proj-num">001 / 004</div>
+      <div class="proj-name">FMS</div>
+      <div class="proj-role">Flow Management System</div>
+      <div class="proj-desc">The backbone of BCI methodology. FMS maps every business process into a structured Google Sheet flow. Track tasks, assign responsibilities, monitor progress — all without any software subscription.</div>
+      <div class="proj-tags"><span class="proj-tag">Google Sheets</span><span class="proj-tag">AppScript</span><span class="proj-tag">Process Flow</span></div>
+    </div>
+    <div class="proj-card">
+      <div class="proj-num">002 / 004</div>
+      <div class="proj-name">IMS</div>
+      <div class="proj-role">Inventory Management System</div>
+      <div class="proj-desc">Complete stock management inside Google Sheets. Purchase orders, stock levels, reorder alerts, vendor tracking and inventory valuation — automated with AppScript triggers.</div>
+      <div class="proj-tags"><span class="proj-tag">Google Sheets</span><span class="proj-tag">AppScript</span><span class="proj-tag">Inventory</span></div>
+    </div>
+    <div class="proj-card">
+      <div class="proj-num">003 / 004</div>
+      <div class="proj-name">ACCOUNTS</div>
+      <div class="proj-role">Account Checklist System</div>
+      <div class="proj-desc">Daily, weekly and monthly account checklists automated in Google Sheets. Bank reconciliation, expense tracking, P&amp;L reports and tax preparation — all in one system.</div>
+      <div class="proj-tags"><span class="proj-tag">Google Sheets</span><span class="proj-tag">Accounting</span><span class="proj-tag">Checklist</span></div>
+    </div>
+    <div class="proj-card">
+      <div class="proj-num">004 / 004</div>
+      <div class="proj-name">AUTOMATION</div>
+      <div class="proj-role">Google AppScript Automation</div>
+      <div class="proj-desc">Custom AppScript code that automates repetitive business tasks. Auto emails, report generation, data sync, WhatsApp alerts and dashboard updates — running on autopilot.</div>
+      <div class="proj-tags"><span class="proj-tag">AppScript</span><span class="proj-tag">Automation</span><span class="proj-tag">Zero Cost</span></div>
+    </div>
+  </div>
+
+  <!-- MY ROLE AT BCI -->
+  <div class="sec-eyebrow">[ My Experience ]</div>
+  <div class="sec-title">My Role<br>At BCI.</div>
+  <div class="divider"></div>
+
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-bottom:4rem;">
+    <div class="skill-box">
+      <div class="skill-box-title">[ What I Learned ]</div>
+      <div class="skill-row"><span>FMS Design</span><span class="skill-pct">✓</span></div>
+      <div class="skill-row"><span>IMS Building</span><span class="skill-pct">✓</span></div>
+      <div class="skill-row"><span>AppScript</span><span class="skill-pct">✓</span></div>
+      <div class="skill-row"><span>Account Systems</span><span class="skill-pct">✓</span></div>
+    </div>
+    <div class="skill-box">
+      <div class="skill-box-title">[ Tools Used ]</div>
+      <div class="skill-row"><span>Google Sheets</span><span class="skill-pct">✓</span></div>
+      <div class="skill-row"><span>Google AppScript</span><span class="skill-pct">✓</span></div>
+      <div class="skill-row"><span>Google Forms</span><span class="skill-pct">✓</span></div>
+      <div class="skill-row"><span>Google Drive</span><span class="skill-pct">✓</span></div>
+    </div>
+    <div class="skill-box">
+      <div class="skill-box-title">[ Systems Built ]</div>
+      <div class="skill-row"><span>Flow Systems</span><span class="skill-pct">✓</span></div>
+      <div class="skill-row"><span>Inventory Tracking</span><span class="skill-pct">✓</span></div>
+      <div class="skill-row"><span>Account Checklists</span><span class="skill-pct">✓</span></div>
+      <div class="skill-row"><span>Auto Reports</span><span class="skill-pct">✓</span></div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div style="text-align:center;padding:3rem;background:rgba(255,255,255,0.04);border:0.5px solid rgba(255,255,255,0.1);">
+    <div style="font-size:2rem;font-weight:800;text-transform:uppercase;margin-bottom:1rem;">Want To Learn BCI Systems?</div>
+    <div style="color:rgba(255,255,255,0.6);margin-bottom:2rem;">Contact Rahul Jain directly for coaching and training</div>
+    <a href="tel:9560806807" style="display:inline-block;background:#fff;color:#0a0f14;padding:0.9rem 2.5rem;font-weight:700;font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;text-decoration:none;margin-right:1rem;">Call 9560 806 807</a>
+    <button class="btn-ghost" onclick="go('contact')">Contact Me Instead</button>
+  </div>
+
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>

@@ -183,6 +183,11 @@ function animatePageIn(id) {
     gsap.from('.tli',    { opacity: 0, x: -25, duration: 0.5, stagger: 0.09, ease: 'power2.out', delay: 0.2 });
     gsap.from('.citem',  { opacity: 0, y: 25,  duration: 0.45, stagger: 0.07, ease: 'power2.out', delay: 0.35 });
   }
+
+  if (id === 'bci') {
+    gsap.from('.proj-card', {opacity:0, y:50, duration:0.5, stagger:0.12, delay:0.1});
+    gsap.from('.skill-box', {opacity:0, y:30, duration:0.5, stagger:0.08, delay:0.4});
+  }
 }
 
 // ── 7. CARD HOVER LIFT (projects page + dark cards) ──
