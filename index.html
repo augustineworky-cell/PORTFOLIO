@@ -137,7 +137,7 @@ nav a:hover::after,nav a.active::after{width:100%;}
 .tlnk:hover{gap:1rem;}
 
 /* PAGES */
-.page{display:none;min-height:100vh;padding-top:var(--off);background:var(--cream);}
+.page{display:none;min-height:100vh;padding-top:var(--off);padding-left:0;padding-right:0;padding-bottom:4rem;background:var(--cream);}
 .page.active{display:block;}
 .phero{padding:3.5rem 3rem 3rem;border-bottom:1px solid var(--border);}
 .peyebrow{font-family:'Space Mono',monospace;font-size:0.56rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--muted);margin-bottom:0.55rem;}
@@ -222,7 +222,7 @@ nav a:hover::after,nav a.active::after{width:100%;}
 footer{background:var(--black);color:rgba(255,255,255,0.4);text-align:center;padding:2rem 3rem;font-size:0.54rem;letter-spacing:0.15em;text-transform:uppercase;}
 
 /* BCI PAGE */
-#bci{background:#0a0f14;color:#fff;padding:var(--off) 3rem 5rem;}
+#bci{background:#0a0f14;color:#fff;padding:var(--off) 0 5rem 0;}
 .sec-eyebrow{font-family:'Space Mono',monospace;font-size:0.58rem;letter-spacing:0.3em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:0.8rem;}
 .sec-title{font-size:clamp(2.5rem,6vw,5rem);font-weight:800;text-transform:uppercase;letter-spacing:-0.03em;line-height:0.88;margin-bottom:1rem;}
 .divider{height:1px;background:rgba(255,255,255,0.1);margin:1.5rem 0 3rem;}
@@ -247,28 +247,29 @@ footer{background:var(--black);color:rgba(255,255,255,0.4);text-align:center;pad
 .btn-ghost{display:inline-block;background:transparent;color:#fff;padding:0.9rem 2.5rem;font-family:'Inter',sans-serif;font-weight:700;font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;border:1.5px solid rgba(255,255,255,0.3);cursor:pointer;transition:all 0.2s;}
 .btn-ghost:hover{background:rgba(255,255,255,0.08);}
 
-/* PAGE HERO BANNER */
-.page-hero{width:calc(100% + 6rem);margin:-6rem -3rem 4rem -3rem;height:380px;position:relative;overflow:hidden;display:flex;align-items:flex-end;}
-.page-hero-bg{position:absolute;inset:0;background-size:cover;background-position:center 20%;transform:scale(1.05);transition:transform 0.6s ease;}
-.page-hero:hover .page-hero-bg{transform:scale(1.0);}
-.page-hero-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(10,15,20,0.92) 0%,rgba(10,15,20,0.7) 50%,rgba(10,15,20,0.3) 100%);}
-.page-hero-content{position:relative;z-index:2;padding:2.5rem 3rem;width:100%;display:flex;justify-content:space-between;align-items:flex-end;}
-.page-hero-left .eyebrow{font-family:'Space Mono',monospace;font-size:0.6rem;letter-spacing:0.3em;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-bottom:0.5rem;}
-.page-hero-left .title{font-size:clamp(2rem,5vw,4rem);font-weight:800;text-transform:uppercase;letter-spacing:-0.03em;line-height:1;margin-bottom:0.5rem;color:#fff;}
-.page-hero-left .subtitle{font-size:0.85rem;color:rgba(255,255,255,0.6);max-width:400px;line-height:1.6;}
-.page-hero-right{text-align:right;}
-.page-hero-right .page-num{font-family:'Space Mono',monospace;font-size:3rem;font-weight:700;color:rgba(255,255,255,0.15);line-height:1;}
-.page-hero-right .page-label{font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.35);}
-.page-ticker{width:calc(100% + 6rem);margin:-4rem -3rem 4rem -3rem;background:rgba(255,255,255,0.06);border-top:0.5px solid rgba(255,255,255,0.1);border-bottom:0.5px solid rgba(255,255,255,0.1);padding:0.6rem 0;overflow:hidden;}
+/* PAGE HERO BANNER — MakeMyClicks style */
+.page-hero{margin:0 32px 40px 32px;border-radius:12px;height:480px;position:relative;overflow:hidden;}
+.page-hero-bg{position:absolute;inset:0;background-size:cover;background-position:center;width:100%;height:100%;transition:transform 0.6s ease;}
+.page-hero:hover .page-hero-bg{transform:scale(1.03);}
+.page-hero-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(8,8,12,0.92) 0%,rgba(15,10,20,0.65) 45%,rgba(15,10,20,0.15) 100%);}
+.page-hero-content{position:absolute;inset:0;z-index:2;max-width:1400px;margin:0 auto;padding:0 40px 48px;display:flex;flex-direction:column;justify-content:flex-end;}
+.page-hero-left .eyebrow{display:flex;align-items:center;gap:8px;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.55);margin-bottom:12px;font-family:'Inter',sans-serif;font-style:normal;font-weight:500;}
+.page-hero-left .eyebrow::before{content:'';display:block;width:28px;height:1.5px;background:#c4334e;flex-shrink:0;}
+.page-hero-left .title{font-family:'Bebas Neue',sans-serif;font-size:clamp(60px,8vw,110px);line-height:0.88;letter-spacing:0.01em;color:#ffffff;margin-bottom:16px;text-shadow:0 2px 40px rgba(0,0,0,0.3);}
+.page-hero-left .subtitle{font-size:13px;color:rgba(255,255,255,0.55);font-weight:300;letter-spacing:0.03em;}
+.page-hero-right{position:absolute;bottom:40px;right:40px;text-align:right;z-index:3;}
+.page-hero-right .page-num{font-family:'Bebas Neue',sans-serif;font-size:80px;color:rgba(255,255,255,0.08);line-height:1;letter-spacing:0.02em;}
+.page-hero-right .page-label{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.3);}
+/* PAGE TICKER */
+.page-ticker{margin:0 32px 40px 32px;background:rgba(255,255,255,0.06);border-top:0.5px solid rgba(255,255,255,0.1);border-bottom:0.5px solid rgba(255,255,255,0.1);padding:0.6rem 0;overflow:hidden;}
 .page-ticker .ticker-track{display:flex;gap:3rem;animation:marquee 20s linear infinite;white-space:nowrap;}
 .page-ticker .ticker-track span{font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.5);}
 @keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
-/* Non-BCI pages have no side padding so disable the side bleed */
-#about .page-hero,#projects .page-hero,#skills .page-hero,#contact .page-hero,#resume .page-hero{width:100%;margin-left:0;margin-right:0;}
-#about .page-ticker,#projects .page-ticker,#skills .page-ticker,#contact .page-ticker,#resume .page-ticker{width:100%;margin-left:0;margin-right:0;}
 /* Non-BCI page-tickers: cream background */
 #about .page-ticker,#projects .page-ticker,#skills .page-ticker,#contact .page-ticker,#resume .page-ticker{background:#ede8e0;border-top-color:#e8e2d8;border-bottom-color:#e8e2d8;}
 #about .page-ticker .ticker-track span,#projects .page-ticker .ticker-track span,#skills .page-ticker .ticker-track span,#contact .page-ticker .ticker-track span,#resume .page-ticker .ticker-track span{color:#888078;}
+/* Inner content alignment */
+.page>*:not(.page-hero):not(.page-ticker){padding-left:40px;padding-right:40px;}
 
 /* ═══════════════════════════════════════════════
    MakeMyClicks Design System
@@ -532,6 +533,7 @@ nav{background:rgba(245,240,232,0.96);backdrop-filter:blur(8px);border-bottom-co
     <div class="page-hero-bg" style="background-image:url('img2.jpg')"></div>
     <div class="page-hero-overlay"></div>
     <div class="page-hero-content">
+      <div style="position:absolute;top:28px;left:40px;z-index:3;display:flex;align-items:center;gap:8px;font-size:12px;color:rgba(255,255,255,0.4);font-family:'Inter',sans-serif;">Portfolio / About</div>
       <div class="page-hero-left">
         <div class="eyebrow">[ 01 / 06 ] — Portfolio</div>
         <div class="title">About<br>Augustine.</div>
@@ -581,6 +583,7 @@ nav{background:rgba(245,240,232,0.96);backdrop-filter:blur(8px);border-bottom-co
     <div class="page-hero-bg" style="background-image:url('img1.jpg')"></div>
     <div class="page-hero-overlay"></div>
     <div class="page-hero-content">
+      <div style="position:absolute;top:28px;left:40px;z-index:3;display:flex;align-items:center;gap:8px;font-size:12px;color:rgba(255,255,255,0.4);font-family:'Inter',sans-serif;">Portfolio / Projects</div>
       <div class="page-hero-left">
         <div class="eyebrow">[ 02 / 06 ] — Portfolio</div>
         <div class="title">Projects<br>Built.</div>
@@ -644,6 +647,7 @@ nav{background:rgba(245,240,232,0.96);backdrop-filter:blur(8px);border-bottom-co
     <div class="page-hero-bg" style="background-image:url('img3.jpg')"></div>
     <div class="page-hero-overlay"></div>
     <div class="page-hero-content">
+      <div style="position:absolute;top:28px;left:40px;z-index:3;display:flex;align-items:center;gap:8px;font-size:12px;color:rgba(255,255,255,0.4);font-family:'Inter',sans-serif;">Portfolio / Skills</div>
       <div class="page-hero-left">
         <div class="eyebrow">[ 03 / 06 ] — Portfolio</div>
         <div class="title">Skills &amp;<br>Stack.</div>
@@ -678,6 +682,7 @@ nav{background:rgba(245,240,232,0.96);backdrop-filter:blur(8px);border-bottom-co
     <div class="page-hero-bg" style="background-image:url('img2.jpg');background-position:70% center;"></div>
     <div class="page-hero-overlay"></div>
     <div class="page-hero-content">
+      <div style="position:absolute;top:28px;left:40px;z-index:3;display:flex;align-items:center;gap:8px;font-size:12px;color:rgba(255,255,255,0.4);font-family:'Inter',sans-serif;">Portfolio / Contact</div>
       <div class="page-hero-left">
         <div class="eyebrow">[ 04 / 06 ] — Portfolio</div>
         <div class="title">Let's<br>Connect.</div>
@@ -716,6 +721,7 @@ nav{background:rgba(245,240,232,0.96);backdrop-filter:blur(8px);border-bottom-co
     <div class="page-hero-bg" style="background-image:url('img1.jpg');background-position:50% 30%;"></div>
     <div class="page-hero-overlay"></div>
     <div class="page-hero-content">
+      <div style="position:absolute;top:28px;left:40px;z-index:3;display:flex;align-items:center;gap:8px;font-size:12px;color:rgba(255,255,255,0.4);font-family:'Inter',sans-serif;">Portfolio / Resume</div>
       <div class="page-hero-left">
         <div class="eyebrow">[ 05 / 06 ] — Portfolio</div>
         <div class="title">Resume &amp;<br>Experience.</div>
@@ -784,6 +790,7 @@ nav{background:rgba(245,240,232,0.96);backdrop-filter:blur(8px);border-bottom-co
     <div class="page-hero-bg" style="background-image:url('https://i.ibb.co/nqSwCwRn/Chat-GPT-Image-Jun-26-2026-10-18-43-AM.png');background-position:center 15%;"></div>
     <div class="page-hero-overlay"></div>
     <div class="page-hero-content">
+      <div style="position:absolute;top:28px;left:40px;z-index:3;display:flex;align-items:center;gap:8px;font-size:12px;color:rgba(255,255,255,0.4);font-family:'Inter',sans-serif;">Portfolio / BCI</div>
       <div class="page-hero-left">
         <div class="eyebrow">[ 06 / 06 ] — Featured</div>
         <div class="title">Business<br>Coaching India.</div>
