@@ -243,6 +243,26 @@ footer{background:var(--black);color:rgba(255,255,255,0.4);text-align:center;pad
 .skill-pct{font-family:'Space Mono',monospace;font-size:0.57rem;color:rgba(255,255,255,0.5);}
 .btn-ghost{display:inline-block;background:transparent;color:#fff;padding:0.9rem 2.5rem;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;border:1.5px solid rgba(255,255,255,0.3);cursor:pointer;transition:all 0.2s;}
 .btn-ghost:hover{background:rgba(255,255,255,0.08);}
+
+/* PAGE HERO BANNER */
+.page-hero{width:calc(100% + 6rem);margin:-6rem -3rem 4rem -3rem;height:380px;position:relative;overflow:hidden;display:flex;align-items:flex-end;}
+.page-hero-bg{position:absolute;inset:0;background-size:cover;background-position:center 20%;transform:scale(1.05);transition:transform 0.6s ease;}
+.page-hero:hover .page-hero-bg{transform:scale(1.0);}
+.page-hero-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(10,15,20,0.92) 0%,rgba(10,15,20,0.7) 50%,rgba(10,15,20,0.3) 100%);}
+.page-hero-content{position:relative;z-index:2;padding:2.5rem 3rem;width:100%;display:flex;justify-content:space-between;align-items:flex-end;}
+.page-hero-left .eyebrow{font-family:'Space Mono',monospace;font-size:0.6rem;letter-spacing:0.3em;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-bottom:0.5rem;}
+.page-hero-left .title{font-size:clamp(2rem,5vw,4rem);font-weight:800;text-transform:uppercase;letter-spacing:-0.03em;line-height:1;margin-bottom:0.5rem;color:#fff;}
+.page-hero-left .subtitle{font-size:0.85rem;color:rgba(255,255,255,0.6);max-width:400px;line-height:1.6;}
+.page-hero-right{text-align:right;}
+.page-hero-right .page-num{font-family:'Space Mono',monospace;font-size:3rem;font-weight:700;color:rgba(255,255,255,0.15);line-height:1;}
+.page-hero-right .page-label{font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.35);}
+.page-ticker{width:calc(100% + 6rem);margin:-4rem -3rem 4rem -3rem;background:rgba(255,255,255,0.06);border-top:0.5px solid rgba(255,255,255,0.1);border-bottom:0.5px solid rgba(255,255,255,0.1);padding:0.6rem 0;overflow:hidden;}
+.page-ticker .ticker-track{display:flex;gap:3rem;animation:marquee 20s linear infinite;white-space:nowrap;}
+.page-ticker .ticker-track span{font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.5);}
+@keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+/* Non-BCI pages have no side padding so disable the side bleed */
+#about .page-hero,#projects .page-hero,#skills .page-hero,#contact .page-hero,#resume .page-hero{width:100%;margin-left:0;margin-right:0;}
+#about .page-ticker,#projects .page-ticker,#skills .page-ticker,#contact .page-ticker,#resume .page-ticker{width:100%;margin-left:0;margin-right:0;}
 </style>
 </head>
 <body>
@@ -386,10 +406,29 @@ footer{background:var(--black);color:rgba(255,255,255,0.4);text-align:center;pad
 
 <!-- ===== ABOUT ===== -->
 <div id="about" class="page">
+  <div class="page-hero">
+    <div class="page-hero-bg" style="background-image:url('img2.jpg')"></div>
+    <div class="page-hero-overlay"></div>
+    <div class="page-hero-content">
+      <div class="page-hero-left">
+        <div class="eyebrow">[ 01 / 06 ] — Portfolio</div>
+        <div class="title">About<br>Augustine.</div>
+        <div class="subtitle">MIS Executive · Business Analyst · Tool Developer</div>
+      </div>
+      <div class="page-hero-right">
+        <div class="page-num">01</div>
+        <div class="page-label">About</div>
+      </div>
+    </div>
+  </div>
+  <div class="page-ticker">
+    <div class="ticker-track">
+      <span>MIS Executive</span><span>•</span><span>Business Analyst</span><span>•</span><span>Data Analyst</span><span>•</span><span>Tool Developer</span><span>•</span><span>Automation</span><span>•</span><span>MIS Executive</span><span>•</span><span>Business Analyst</span><span>•</span><span>Data Analyst</span><span>•</span><span>Tool Developer</span><span>•</span><span>Automation</span><span>•</span>
+    </div>
+  </div>
   <div class="about-split">
     <div class="about-img"><img src="img1.jpg" alt="Augustine"></div>
     <div class="about-txt">
-      <div class="peyebrow" style="padding-top:0.5rem;">01 / 05</div>
       <div class="aname">Augus<br>tine</div>
       <div class="arole">MIS Executive — Business Analyst</div>
       <div class="abio">
@@ -416,7 +455,26 @@ footer{background:var(--black);color:rgba(255,255,255,0.4);text-align:center;pad
 
 <!-- ===== PROJECTS ===== -->
 <div id="projects" class="page">
-  <div class="phero"><div class="peyebrow">02 / 05</div><div class="ptitle">Projects<br>Built.</div></div>
+  <div class="page-hero">
+    <div class="page-hero-bg" style="background-image:url('img1.jpg')"></div>
+    <div class="page-hero-overlay"></div>
+    <div class="page-hero-content">
+      <div class="page-hero-left">
+        <div class="eyebrow">[ 02 / 06 ] — Portfolio</div>
+        <div class="title">Projects<br>Built.</div>
+        <div class="subtitle">5 live production apps — all deployed on Vercel</div>
+      </div>
+      <div class="page-hero-right">
+        <div class="page-num">02</div>
+        <div class="page-label">Projects</div>
+      </div>
+    </div>
+  </div>
+  <div class="page-ticker">
+    <div class="ticker-track">
+      <span>PRICEV3</span><span>•</span><span>BIKREE</span><span>•</span><span>KHARIDI</span><span>•</span><span>DISPATCH</span><span>•</span><span>GOODSGURU</span><span>•</span><span>PRICEV3</span><span>•</span><span>BIKREE</span><span>•</span><span>KHARIDI</span><span>•</span><span>DISPATCH</span><span>•</span><span>GOODSGURU</span><span>•</span>
+    </div>
+  </div>
   <div class="pcontent">
     <div class="pfgrid">
       <div class="pfcard" onclick="window.open('https://pricev-3.vercel.app','_blank')">
@@ -460,7 +518,26 @@ footer{background:var(--black);color:rgba(255,255,255,0.4);text-align:center;pad
 
 <!-- ===== SKILLS ===== -->
 <div id="skills" class="page">
-  <div class="phero"><div class="peyebrow">03 / 05</div><div class="ptitle">Skills &amp;<br>Stack.</div></div>
+  <div class="page-hero">
+    <div class="page-hero-bg" style="background-image:url('img3.jpg')"></div>
+    <div class="page-hero-overlay"></div>
+    <div class="page-hero-content">
+      <div class="page-hero-left">
+        <div class="eyebrow">[ 03 / 06 ] — Portfolio</div>
+        <div class="title">Skills &amp;<br>Stack.</div>
+        <div class="subtitle">Frontend · Backend · Business · AI Integration</div>
+      </div>
+      <div class="page-hero-right">
+        <div class="page-num">03</div>
+        <div class="page-label">Skills</div>
+      </div>
+    </div>
+  </div>
+  <div class="page-ticker">
+    <div class="ticker-track">
+      <span>HTML</span><span>•</span><span>JavaScript</span><span>•</span><span>Supabase</span><span>•</span><span>Vite</span><span>•</span><span>PostgreSQL</span><span>•</span><span>Gemini AI</span><span>•</span><span>HTML</span><span>•</span><span>JavaScript</span><span>•</span><span>Supabase</span><span>•</span><span>Vite</span><span>•</span><span>PostgreSQL</span><span>•</span><span>Gemini AI</span><span>•</span>
+    </div>
+  </div>
   <div class="pcontent">
     <div class="skgrid">
       <div class="skbox"><div class="skttl">Frontend</div><div class="skrow"><span>HTML / CSS</span><span class="skpct">95%</span></div><div class="skrow"><span>JavaScript</span><span class="skpct">88%</span></div><div class="skrow"><span>Vite</span><span class="skpct">80%</span></div><div class="skrow"><span>Responsive Design</span><span class="skpct">85%</span></div><div class="skrow"><span>Chart.js</span><span class="skpct">78%</span></div></div>
@@ -475,7 +552,26 @@ footer{background:var(--black);color:rgba(255,255,255,0.4);text-align:center;pad
 
 <!-- ===== CONTACT ===== -->
 <div id="contact" class="page">
-  <div class="phero"><div class="peyebrow">04 / 05</div><div class="ptitle">Let's<br>Talk.</div></div>
+  <div class="page-hero">
+    <div class="page-hero-bg" style="background-image:url('img2.jpg');background-position:70% center;"></div>
+    <div class="page-hero-overlay"></div>
+    <div class="page-hero-content">
+      <div class="page-hero-left">
+        <div class="eyebrow">[ 04 / 06 ] — Portfolio</div>
+        <div class="title">Let's<br>Connect.</div>
+        <div class="subtitle">Open to full-time roles · Freelance · Consulting</div>
+      </div>
+      <div class="page-hero-right">
+        <div class="page-num">04</div>
+        <div class="page-label">Contact</div>
+      </div>
+    </div>
+  </div>
+  <div class="page-ticker">
+    <div class="ticker-track">
+      <span>Available Immediately</span><span>•</span><span>Open To Work</span><span>•</span><span>Full Time</span><span>•</span><span>Freelance</span><span>•</span><span>Consulting</span><span>•</span><span>Available Immediately</span><span>•</span><span>Open To Work</span><span>•</span><span>Full Time</span><span>•</span><span>Freelance</span><span>•</span><span>Consulting</span><span>•</span>
+    </div>
+  </div>
   <div class="cinner">
     <div class="cleft">
       <p class="csub">Looking for opportunities in MIS, Business Analysis, Data Analysis, or Internal Tool Development. Available for full-time, freelance, or consulting.</p>
@@ -494,7 +590,26 @@ footer{background:var(--black);color:rgba(255,255,255,0.4);text-align:center;pad
 
 <!-- ===== RESUME ===== -->
 <div id="resume" class="page">
-  <div class="phero"><div class="peyebrow">05 / 05</div><div class="ptitle">Resume &amp;<br>Experience.</div></div>
+  <div class="page-hero">
+    <div class="page-hero-bg" style="background-image:url('img1.jpg');background-position:50% 30%;"></div>
+    <div class="page-hero-overlay"></div>
+    <div class="page-hero-content">
+      <div class="page-hero-left">
+        <div class="eyebrow">[ 05 / 06 ] — Portfolio</div>
+        <div class="title">Resume &amp;<br>Experience.</div>
+        <div class="subtitle">MIS Executive at MakeMyClicks · 1+ Year Experience</div>
+      </div>
+      <div class="page-hero-right">
+        <div class="page-num">05</div>
+        <div class="page-label">Resume</div>
+      </div>
+    </div>
+  </div>
+  <div class="page-ticker">
+    <div class="ticker-track">
+      <span>MakeMyClicks</span><span>•</span><span>MIS Executive</span><span>•</span><span>1+ Year</span><span>•</span><span>5 Apps Built</span><span>•</span><span>100% Deployed</span><span>•</span><span>MakeMyClicks</span><span>•</span><span>MIS Executive</span><span>•</span><span>1+ Year</span><span>•</span><span>5 Apps Built</span><span>•</span><span>100% Deployed</span><span>•</span>
+    </div>
+  </div>
   <div class="pcontent">
     <div class="reswrap">
       <div>
@@ -543,20 +658,28 @@ footer{background:var(--black);color:rgba(255,255,255,0.4);text-align:center;pad
 <div id="bci" class="page">
 
   <!-- HERO BANNER -->
-  <div style="width:100%;height:420px;background-image:url('https://i.ibb.co/nqSwCwRn/Chat-GPT-Image-Jun-26-2026-10-18-43-AM.png');background-size:cover;background-position:center top;position:relative;margin:-6rem -3rem 3rem -3rem;width:calc(100% + 6rem);">
-    <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0.3),rgba(10,15,20,1));"></div>
-    <div style="position:absolute;bottom:2rem;left:3rem;">
-      <div style="font-family:'Space Mono',monospace;font-size:0.6rem;letter-spacing:0.3em;color:rgba(255,255,255,0.5);margin-bottom:0.5rem;">[ FEATURED MENTOR ]</div>
-      <div style="font-size:2.5rem;font-weight:800;text-transform:uppercase;letter-spacing:-0.02em;">Business Coaching India</div>
-      <div style="font-size:0.9rem;color:rgba(255,255,255,0.6);margin-top:0.3rem;">Run Your Business Operation — Working One Day In A Week</div>
+  <div class="page-hero">
+    <div class="page-hero-bg" style="background-image:url('https://i.ibb.co/nqSwCwRn/Chat-GPT-Image-Jun-26-2026-10-18-43-AM.png');background-position:center 15%;"></div>
+    <div class="page-hero-overlay"></div>
+    <div class="page-hero-content">
+      <div class="page-hero-left">
+        <div class="eyebrow">[ 06 / 06 ] — Featured</div>
+        <div class="title">Business<br>Coaching India.</div>
+        <div class="subtitle">Run Your Business Operation — Working One Day In A Week</div>
+      </div>
+      <div class="page-hero-right">
+        <div class="page-num">BCI</div>
+        <div class="page-label">Rahul Jain</div>
+      </div>
+    </div>
+  </div>
+  <div class="page-ticker">
+    <div class="ticker-track">
+      <span>FMS</span><span>•</span><span>IMS</span><span>•</span><span>Google Sheets</span><span>•</span><span>AppScript</span><span>•</span><span>Business Automation</span><span>•</span><span>FMS</span><span>•</span><span>IMS</span><span>•</span><span>Google Sheets</span><span>•</span><span>AppScript</span><span>•</span><span>Business Automation</span><span>•</span>
     </div>
   </div>
 
   <!-- ABOUT BCI -->
-  <div class="sec-eyebrow">[ About BCI ]</div>
-  <div class="sec-title">Business<br>Automation.</div>
-  <div class="divider"></div>
-
   <div style="display:grid;grid-template-columns:1.2fr 1fr;gap:4rem;margin-bottom:4rem;">
     <div style="font-size:1rem;line-height:1.9;color:rgba(255,255,255,0.7);">
       <p style="margin-bottom:1.2rem;"><strong style="color:#fff;">BCI — Business Coaching India</strong> is founded by <strong style="color:#fff;">Rahul Jain</strong>, a business automation expert who teaches entrepreneurs how to run their entire business operations using <strong style="color:#fff;">Google Sheets + AppScript</strong>.</p>
