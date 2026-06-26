@@ -11,14 +11,14 @@
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;cursor:none !important;}
 :root{
-  --cream:#f5f3ef;
+  --cream:#f5f0e8;
   --ink:#1a1a1a;
   --black:#1a1a1a;
   --white:#ffffff;
   --rose:#c4334e;
-  --muted:#6b6b6b;
-  --border:#e0ddd8;
-  --grey:#edebe6;
+  --muted:#888078;
+  --border:#e8e2d8;
+  --grey:#ede8e0;
   --ah:36px;
   --nh:68px;
   --off:104px;
@@ -49,8 +49,9 @@ nav{position:fixed;top:var(--ah);left:0;right:0;z-index:1000;height:var(--nh);ba
 .nav-right{justify-content:flex-end;}
 .nav-logo{font-size:1.3rem;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;text-align:center;color:var(--black);cursor:pointer;text-decoration:none;}
 nav a{font-size:0.62rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);text-decoration:none;position:relative;padding-bottom:2px;transition:color 0.2s;}
-nav a:hover,nav a.active{color:var(--black);}
-nav a::after{content:'';position:absolute;bottom:-1px;left:0;width:0;height:1.5px;background:var(--black);transition:width 0.3s ease;}
+nav a:hover{color:var(--black);}
+nav a.active{color:var(--rose);}
+nav a::after{content:'';position:absolute;bottom:-1px;left:0;width:0;height:1.5px;background:var(--rose);transition:width 0.3s ease;}
 nav a:hover::after,nav a.active::after{width:100%;}
 
 /* HOME */
@@ -128,8 +129,8 @@ nav a:hover::after,nav a.active::after{width:100%;}
 .pdark .prole{color:rgba(255,255,255,0.45);}
 
 /* BUTTONS */
-.btn-blk{display:inline-block;background:var(--black);color:#fff;padding:0.88rem 2.2rem;font-family:'Inter',sans-serif;font-weight:700;font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;border:none;cursor:pointer;transition:opacity 0.2s;text-decoration:none;}
-.btn-blk:hover{opacity:0.75;}
+.btn-blk{display:inline-block;background:var(--black);color:#fff;padding:0.88rem 2.2rem;font-family:'Inter',sans-serif;font-weight:700;font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;border:none;cursor:pointer;transition:background 0.2s;text-decoration:none;}
+.btn-blk:hover{background:var(--rose);}
 .btn-out{display:inline-block;background:transparent;color:var(--black);padding:0.88rem 2.2rem;font-family:'Inter',sans-serif;font-weight:600;font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;border:1.5px solid var(--black);cursor:pointer;transition:all 0.2s;text-decoration:none;}
 .btn-out:hover{background:var(--black);color:#fff;}
 .tlnk{font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--black);display:inline-flex;align-items:center;gap:0.5rem;transition:gap 0.2s;cursor:pointer;border:none;background:none;font-family:'Inter',sans-serif;padding:0;}
@@ -265,6 +266,9 @@ footer{background:var(--black);color:rgba(255,255,255,0.4);text-align:center;pad
 /* Non-BCI pages have no side padding so disable the side bleed */
 #about .page-hero,#projects .page-hero,#skills .page-hero,#contact .page-hero,#resume .page-hero{width:100%;margin-left:0;margin-right:0;}
 #about .page-ticker,#projects .page-ticker,#skills .page-ticker,#contact .page-ticker,#resume .page-ticker{width:100%;margin-left:0;margin-right:0;}
+/* Non-BCI page-tickers: cream background */
+#about .page-ticker,#projects .page-ticker,#skills .page-ticker,#contact .page-ticker,#resume .page-ticker{background:#ede8e0;border-top-color:#e8e2d8;border-bottom-color:#e8e2d8;}
+#about .page-ticker .ticker-track span,#projects .page-ticker .ticker-track span,#skills .page-ticker .ticker-track span,#contact .page-ticker .ticker-track span,#resume .page-ticker .ticker-track span{color:#888078;}
 
 /* ═══════════════════════════════════════════════
    MakeMyClicks Design System
@@ -352,6 +356,20 @@ nav a:hover::after,nav a.active::after{background:var(--rose);}
 }
 .cat-pill:hover,.cat-pill.active{background:var(--ink);color:#fff;}
 .cat-pill:first-child{border-left:none;}
+
+/* NAV — cream glass + rose active */
+nav{background:rgba(245,240,232,0.96);backdrop-filter:blur(8px);border-bottom-color:#e8e2d8;}
+
+/* BUTTONS — rose hover + light ghost */
+.btn-ghost{color:#888078;border-color:#e8e2d8;background:transparent;}
+.btn-ghost:hover{background:#ede8e0;color:var(--black);}
+#bci .btn-ghost{color:#fff;border-color:rgba(255,255,255,0.3);}
+#bci .btn-ghost:hover{background:rgba(255,255,255,0.08);color:#fff;}
+
+/* STATS / PILL chips — ink on cream */
+.pill{background:#ede8e0;color:#1a1a1a;border-color:#e8e2d8;}
+.stat .num,.hero-headline{color:#1a1a1a;}
+.stat .lbl,.hero-sub,.hero-tag{color:#888078;}
 </style>
 </head>
 <body>
