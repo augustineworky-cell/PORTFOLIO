@@ -19,7 +19,7 @@ function _switchPage(id) {
   const navEl = document.getElementById('nav-' + id);
   if (navEl) {
     navEl.classList.add('active');
-    moveNavPill(navEl);
+    setTimeout(updateNavBg, 50);
   }
 
   window.scrollTo(0, 0);
@@ -107,32 +107,41 @@ document.querySelectorAll('.nav-left a, .nav-right a').forEach(link => {
   });
 });
 
-// ── 5. NAV ACTIVE PILL ──
-const navPill = document.createElement('div');
-navPill.id = 'nav-pill';
-document.querySelector('nav').appendChild(navPill);
+// ── 5. SLIDING NAV PILL ──
+const _navBgMap = new Map();
 
-function moveNavPill(el) {
-  const navRect = document.querySelector('nav').getBoundingClientRect();
-  const elRect  = el.getBoundingClientRect();
-  gsap.to(navPill, {
-    x:      elRect.left   - navRect.left,
-    y:      elRect.top    - navRect.top,
-    width:  elRect.width,
-    height: elRect.height,
-    duration: 0.4,
-    ease: 'power3.out'
+document.querySelectorAll('.nav-links').forEach(group => {
+  const bg = document.createElement('div');
+  bg.className = 'nav-active-bg';
+  group.appendChild(bg);
+  _navBgMap.set(group, bg);
+
+  group.querySelectorAll('a').forEach(link => {
+    link.addEventListener('mouseenter', () => moveNavBg(link));
   });
+  group.addEventListener('mouseleave', () => updateNavBg());
+});
+
+function moveNavBg(el) {
+  const group = el.closest('.nav-links');
+  if (!group) return;
+  const bg = _navBgMap.get(group);
+  if (!bg) return;
+  const rect = el.getBoundingClientRect();
+  const pRect = group.getBoundingClientRect();
+  bg.style.width   = rect.width  + 'px';
+  bg.style.height  = rect.height + 'px';
+  bg.style.left    = (rect.left - pRect.left) + 'px';
+  bg.style.top     = (rect.top  - pRect.top)  + 'px';
+  bg.style.opacity = '1';
 }
 
-// Init pill on the current active nav link
-document.querySelectorAll('.nav-left a, .nav-right a').forEach(link => {
-  link.addEventListener('click', () => moveNavPill(link));
-  if (link.classList.contains('active')) {
-    // Defer until layout is complete
-    requestAnimationFrame(() => moveNavPill(link));
-  }
-});
+function updateNavBg() {
+  const active = document.querySelector('nav a.active');
+  if (active) moveNavBg(active);
+}
+
+setTimeout(updateNavBg, 100);
 
 // ── 6. PAGE-IN ANIMATIONS ──
 function animatePageIn(id) {
