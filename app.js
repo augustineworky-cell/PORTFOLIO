@@ -66,18 +66,18 @@ document.addEventListener('mousemove', e => {
 
 function lerp(a, b, t) { return a + (b - a) * t; }
 
-function tickCursor() {
-  dotX  = lerp(dotX,  mouseX, 0.18);
-  dotY  = lerp(dotY,  mouseY, 0.18);
-  pillX = lerp(pillX, mouseX, 0.12);
-  pillY = lerp(pillY, mouseY, 0.12);
+function animateCursor() {
+  dotX  = lerp(dotX,  mouseX, 0.08);
+  dotY  = lerp(dotY,  mouseY, 0.08);
+  pillX = lerp(pillX, mouseX, 0.06);
+  pillY = lerp(pillY, mouseY, 0.06);
   dot.style.left  = dotX  + 'px';
   dot.style.top   = dotY  + 'px';
   pill.style.left = pillX + 'px';
   pill.style.top  = pillY + 'px';
-  requestAnimationFrame(tickCursor);
+  requestAnimationFrame(animateCursor);
 }
-tickCursor();
+animateCursor();
 
 // Pill reveal on interactive elements (using GAZU class names)
 const hoverEls = document.querySelectorAll(
@@ -95,7 +95,7 @@ hoverEls.forEach(el => {
 });
 
 // ── 4. MAGNETIC NAV ──
-document.querySelectorAll('.nav-left a, .nav-right a').forEach(link => {
+document.querySelectorAll('.nav-links a').forEach(link => {
   link.addEventListener('mousemove', e => {
     const r = link.getBoundingClientRect();
     const dx = (e.clientX - (r.left + r.width  / 2)) * 0.3;
