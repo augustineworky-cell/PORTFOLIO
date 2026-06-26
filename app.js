@@ -56,25 +56,32 @@ function go(id) {
 const dot  = document.getElementById('cursor-dot');
 const pill = document.getElementById('cursor-pill');
 let mouseX = 0, mouseY = 0;
-let dotX = 0,   dotY = 0;
-let pillX = 0,  pillY = 0;
+let dotX = 0, dotY = 0;
+let pillX = 0, pillY = 0;
 
-document.addEventListener('mousemove', e => {
+document.addEventListener('mousemove', (e) => {
   mouseX = e.clientX;
   mouseY = e.clientY;
 });
 
-function lerp(a, b, t) { return a + (b - a) * t; }
+function lerp(a, b, t) {
+  return a + (b - a) * t;
+}
 
 function animateCursor() {
-  dotX  = lerp(dotX,  mouseX, 0.08);
-  dotY  = lerp(dotY,  mouseY, 0.08);
-  pillX = lerp(pillX, mouseX, 0.06);
-  pillY = lerp(pillY, mouseY, 0.06);
-  dot.style.left  = dotX  + 'px';
-  dot.style.top   = dotY  + 'px';
-  pill.style.left = pillX + 'px';
-  pill.style.top  = pillY + 'px';
+  dotX = lerp(dotX, mouseX, 0.15);
+  dotY = lerp(dotY, mouseY, 0.15);
+  pillX = lerp(pillX, mouseX, 0.1);
+  pillY = lerp(pillY, mouseY, 0.1);
+
+  if (dot) {
+    dot.style.left = dotX + 'px';
+    dot.style.top = dotY + 'px';
+  }
+  if (pill) {
+    pill.style.left = pillX + 'px';
+    pill.style.top = pillY + 'px';
+  }
   requestAnimationFrame(animateCursor);
 }
 animateCursor();
