@@ -236,6 +236,23 @@ footer{background:var(--black);color:rgba(255,255,255,0.4);text-align:center;pad
 .skill-pct{font-family:'Space Mono',monospace;font-size:0.57rem;color:rgba(255,255,255,0.5);}
 .btn-ghost{display:inline-block;background:transparent;color:#fff;padding:0.9rem 2.5rem;font-family:'Inter',sans-serif;font-weight:700;font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;border:1.5px solid rgba(255,255,255,0.3);cursor:pointer;transition:all 0.2s;}
 .btn-ghost:hover{background:rgba(255,255,255,0.08);}
+/* FMS FLASHCARD */
+.fms-flashcard{background:#1a1f2e;border-radius:12px;box-shadow:0 10px 40px rgba(0,0,0,0.5);color:#e0e0e0;max-width:680px;overflow:hidden;border:1px solid rgba(255,255,255,0.1);}
+.fms-flashcard .card-header{background:#21273a;padding:24px;border-bottom:1px solid rgba(255,255,255,0.08);}
+.fms-flashcard .card-header h2{margin:0 0 12px;color:#fff;font-size:1.4rem;letter-spacing:0.5px;font-family:'Inter',sans-serif;font-weight:700;text-transform:none;}
+.fms-flashcard .tags{display:flex;gap:8px;flex-wrap:wrap;}
+.fms-flashcard .tags span{background:rgba(137,180,250,0.15);color:#89b4fa;font-size:0.7rem;padding:4px 10px;border-radius:20px;text-transform:uppercase;font-weight:600;letter-spacing:0.5px;}
+.fms-flashcard .card-body{padding:24px;}
+.fms-flashcard .content-section{margin-bottom:22px;}
+.fms-flashcard .content-section:last-child{margin-bottom:0;}
+.fms-flashcard .content-section h3{color:#89b4fa;font-size:0.78rem;text-transform:uppercase;letter-spacing:1px;margin:0 0 10px;border-bottom:1px solid rgba(255,255,255,0.08);padding-bottom:6px;font-family:'Inter',sans-serif;}
+.fms-flashcard .content-section p{line-height:1.7;margin:0;font-size:0.9rem;color:#bac2de;}
+.fms-flashcard .content-section ul{list-style:none;padding:0;margin:0;}
+.fms-flashcard .content-section li{margin-bottom:7px;}
+.fms-flashcard .content-section a{color:#a6e3a1;text-decoration:none;font-size:0.9rem;transition:color 0.2s;}
+.fms-flashcard .content-section a:hover{color:#94e2d5;text-decoration:underline;}
+.fms-flashcard .content-section code{display:block;background:#0d1117;color:#f38ba8;padding:10px 14px;border-radius:6px;font-family:'Space Mono',monospace;font-size:0.82rem;margin-bottom:8px;border:1px solid rgba(255,255,255,0.07);}
+@media(max-width:480px){.fms-flashcard .card-header{padding:16px;}.fms-flashcard .card-body{padding:16px;}.fms-flashcard .card-header h2{font-size:1.1rem;}}
 
 /* PAGE HERO BANNER — MakeMyClicks style */
 .page-hero{margin:0 32px 40px 32px;border-radius:12px;height:480px;position:relative;overflow:hidden;}
@@ -865,6 +882,62 @@ footer{background:var(--black);color:rgba(255,255,255,0.4);text-align:center;pad
       <div class="proj-role">Google AppScript Automation</div>
       <div class="proj-desc">Custom AppScript code that automates repetitive business tasks. Auto emails, report generation, data sync, WhatsApp alerts and dashboard updates — running on autopilot.</div>
       <div class="proj-tags"><span class="proj-tag">AppScript</span><span class="proj-tag">Automation</span><span class="proj-tag">Zero Cost</span></div>
+    </div>
+  </div>
+
+  <!-- FMS FLASHCARD -->
+  <div class="sec-eyebrow" style="margin-bottom:1rem;">[ FMS Deep Dive ]</div>
+  <div style="margin-bottom:4rem;">
+    <div class="fms-flashcard">
+      <div class="card-header">
+        <h2>FMS — Flow Management Sheet</h2>
+        <div class="tags">
+          <span>Google Sheets</span>
+          <span>AppScript</span>
+          <span>Process Flow</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="content-section">
+          <h3>Definition</h3>
+          <p>The backbone of BCI methodology. FMS maps every business process into a structured Google Sheet flow. Track tasks, assign responsibilities, monitor progress — all without any software subscription.</p>
+        </div>
+        <div class="content-section">
+          <h3>Practice Sheets</h3>
+          <ul>
+            <li><a href="http://tinyurl.com/fms-practice-sheet-A" target="_blank">Sheet A</a></li>
+            <li><a href="http://tinyurl.com/fms-practice-sheet-B" target="_blank">Sheet B</a></li>
+            <li><a href="http://tinyurl.com/fms-practice-sheet-C" target="_blank">Sheet C</a></li>
+            <li><a href="https://tinyurl.com/fms-bci" target="_blank">BCI FMS</a></li>
+          </ul>
+        </div>
+        <div class="content-section">
+          <h3>Setup Video</h3>
+          <ul>
+            <li><a href="https://youtu.be/PI_hErtw5hg" target="_blank">https://youtu.be/PI_hErtw5hg</a></li>
+            <li><a href="https://tinyurl.com/fms-sheet-2025" target="_blank">https://tinyurl.com/fms-sheet-2025</a></li>
+          </ul>
+        </div>
+        <div class="content-section">
+          <h3>Workshop Notes</h3>
+          <ul>
+            <li><a href="https://tinyurl.com/fms-revision-document" target="_blank">FMS Revision Document</a></li>
+          </ul>
+        </div>
+        <div class="content-section">
+          <h3>Explore</h3>
+          <ul>
+            <li><a href="https://notebooklm.google/" target="_blank">NotebookLM</a></li>
+          </ul>
+        </div>
+        <div class="content-section">
+          <h3>Key Formulas</h3>
+          <code>=index('Form responses 1'!$A$2:$E)</code>
+          <code>=index('Form responses 2'!$A$2:$E)</code>
+          <code>=index('Form responses 3'!$A$2:$E)</code>
+          <code>=index('Form responses 4'!$A$2:$E)</code>
+        </div>
+      </div>
     </div>
   </div>
 
