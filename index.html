@@ -523,15 +523,15 @@ footer{background:var(--black);color:rgba(255,255,255,0.4);text-align:center;pad
   <!-- STATS BAR -->
   <div class="stats-bar">
     <div class="stat-item">
-      <span class="stat-value">8</span>
+      <span class="stat-value" data-target="8">0</span>
       <span class="stat-label">Systems Built</span>
     </div>
     <div class="stat-item">
-      <span class="stat-value">45+</span>
+      <span class="stat-value"><span data-target="45">0</span>+</span>
       <span class="stat-label">Employees Served</span>
     </div>
     <div class="stat-item">
-      <span class="stat-value">2</span>
+      <span class="stat-value" data-target="2">0</span>
       <span class="stat-label">Companies</span>
     </div>
     <div class="stat-item">
@@ -1238,6 +1238,31 @@ document.addEventListener('DOMContentLoaded', ()=>{
   initHero();
   setTimeout(initScroll, 200);
 });
+
+/* ── COUNT-UP STATS ── */
+function animateCounter(el) {
+  const target = +el.getAttribute('data-target');
+  let count = 0;
+  const step = target / 50;
+  const timer = setInterval(() => {
+    count += step;
+    if (count >= target) {
+      el.textContent = target;
+      clearInterval(timer);
+    } else {
+      el.textContent = Math.floor(count);
+    }
+  }, 30);
+}
+const statObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      animateCounter(entry.target);
+      statObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('[data-target]').forEach(el => statObserver.observe(el));
 
 /* ── SCROLL REVEAL ── */
 const revealEls = document.querySelectorAll('.reveal');
