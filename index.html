@@ -48,25 +48,28 @@ nav{position:fixed;top:var(--ah);left:0;right:0;z-index:1000;height:64px;backgro
 #home{background:var(--cream);}
 
 /* STATS BAR */
-.stats-bar{display:flex;justify-content:space-around;align-items:center;background:var(--cream);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:2.5rem 2rem;flex-wrap:wrap;gap:2rem;}
+.stats-bar{display:flex;justify-content:space-around;align-items:center;background:#141414;border-top:1px solid #2b2b2b;border-bottom:1px solid #2b2b2b;padding:2.5rem 2rem;flex-wrap:wrap;gap:2rem;}
 .stat-item{display:flex;flex-direction:column;align-items:center;text-align:center;flex:1;min-width:150px;}
-.stat-value{font-family:'Bebas Neue',cursive;font-size:3rem;font-weight:400;color:var(--rose);line-height:1;margin-bottom:0.4rem;}
-.stat-label{font-size:0.58rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--muted);font-weight:600;}
+.stat-value{font-family:'Bebas Neue',cursive;font-size:3rem;font-weight:400;color:#d90429;line-height:1;margin-bottom:0.4rem;}
+.stat-label{font-size:0.58rem;text-transform:uppercase;letter-spacing:0.18em;color:#a0a0a0;font-weight:600;}
+@media(max-width:768px){.stat-item{min-width:45%;}}
+@media(max-width:480px){.stat-item{min-width:100%;}}
 
 /* TYPEWRITER */
 .tw-cursor{display:inline-block;width:2px;height:0.9em;background:var(--rose);margin-left:2px;vertical-align:middle;animation:tw-blink 1s step-end infinite;}
 @keyframes tw-blink{0%,100%{opacity:1;}50%{opacity:0;}}
 
 /* HERO */
-.hero{position:relative;height:100vh;background:var(--cream);overflow:hidden;}
+.hero{position:relative;height:100vh;background-image:url('https://i.ibb.co/k2NzvR29/ChatGPT-Image-Jun-27-2026-10-12-01-PM.png');background-size:cover;background-position:58% center;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0.2) 0%,rgba(20,0,0,0.75) 100%);z-index:1;}
 .hero-eyebrow{position:absolute;top:calc(var(--off) + 2.5rem);left:4rem;z-index:4;}
-.hero-eyebrow p{font-size:0.62rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--muted);line-height:2.2;}
-.hero-eyebrow p.bold{font-weight:700;color:var(--black);}
+.hero-eyebrow p{font-size:0.62rem;letter-spacing:0.25em;text-transform:uppercase;color:rgba(255,255,255,0.6);line-height:2.2;}
+.hero-eyebrow p.bold{font-weight:700;color:#fff;}
 .hero-scroll{position:absolute;top:calc(var(--off) + 2.5rem);right:3.5rem;z-index:4;display:flex;flex-direction:column;align-items:center;gap:0.5rem;opacity:0.35;}
-.hero-scroll span{font-size:0.5rem;letter-spacing:0.25em;text-transform:uppercase;writing-mode:vertical-rl;}
-.hero-scroll-line{width:1px;height:45px;background:var(--black);}
-.hero-bigwrap{position:absolute;left:0;right:0;bottom:24%;z-index:1;padding:0 3rem;overflow:hidden;}
-.hero-big{font-size:clamp(5rem,14.2vw,17rem);font-weight:800;letter-spacing:-0.04em;text-transform:uppercase;line-height:0.88;display:flex;}
+.hero-scroll span{font-size:0.5rem;letter-spacing:0.25em;text-transform:uppercase;writing-mode:vertical-rl;color:#fff;}
+.hero-scroll-line{width:1px;height:45px;background:#fff;}
+.hero-bigwrap{position:absolute;left:0;right:0;bottom:24%;z-index:3;padding:0 3rem;overflow:hidden;}
+.hero-big{font-size:clamp(5rem,14.2vw,17rem);font-weight:800;letter-spacing:-0.04em;text-transform:uppercase;line-height:0.88;display:flex;color:#fff;}
 .hero-big .ltr{display:inline-block;overflow:hidden;}
 .hero-big .ltr-i{display:inline-block;}
 .hero-imgwrap{position:absolute;right:9%;bottom:0;z-index:2;width:34%;height:80%;overflow:hidden;}
@@ -74,7 +77,7 @@ nav{position:fixed;top:var(--ah);left:0;right:0;z-index:1000;height:64px;backgro
 .hero-bot{position:absolute;bottom:3.5rem;left:4rem;right:4rem;z-index:4;display:flex;justify-content:space-between;align-items:flex-end;}
 .hero-bot-l,.hero-bot-r{display:flex;flex-direction:column;gap:0.9rem;}
 .hero-bot-r{text-align:right;align-items:flex-end;}
-.hero-avail{font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);line-height:1.9;}
+.hero-avail{font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.65);line-height:1.9;}
 
 /* DARK SECTION */
 .dsec{background:var(--black);padding:5rem 3rem;color:#fff;}
@@ -111,6 +114,16 @@ nav{position:fixed;top:var(--ah);left:0;right:0;z-index:1000;height:64px;backgro
 .ficon{font-size:1.3rem;margin-bottom:0.9rem;display:block;}
 .ftitle{font-size:0.63rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;margin-bottom:0.45rem;}
 .fdesc{font-size:0.74rem;color:var(--muted);line-height:1.65;}
+
+/* PROJECT CARD LIVE BTN + IMPACT */
+.pf-impact{font-size:0.72rem;color:#d90429;font-weight:600;margin:0.3rem 0 0.6rem;letter-spacing:0.01em;}
+.pf-live{display:inline-block;background:#d90429;color:#fff;padding:8px 16px;border-radius:4px;font-size:0.78rem;font-weight:700;text-decoration:none;letter-spacing:0.04em;transition:background 0.2s;margin-top:0.8rem;cursor:pointer;}
+.pf-live:hover{background:#ef233c;}
+
+/* ABOUT JOURNEY TIMELINE */
+.journey{display:flex;align-items:center;flex-wrap:wrap;gap:0;padding:2rem 40px;border-top:1px solid var(--border);background:var(--cream);}
+.journey-step{font-size:0.68rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--black);padding:0.4rem 0;}
+.journey-arrow{color:#d90429;font-weight:900;font-size:1.1rem;padding:0 0.6rem;line-height:1;}
 
 /* HOME PROJ GRID */
 .hproj{background:var(--cream);padding:5rem 3rem;}
@@ -607,12 +620,11 @@ footer{background:var(--black);color:rgba(255,255,255,0.4);text-align:center;pad
     <div class="about-img"><img src="img1.jpg" alt="Augustine"></div>
     <div class="about-txt">
       <div class="aname">Augus<br>tine</div>
-      <div class="arole">MIS Executive — Business Analyst</div>
+      <div class="arole">Self-Taught. Production-Grade. Zero Excuses.</div>
       <div class="abio">
-        <p>I'm <strong>Augustine</strong> — a <strong>MIS Executive, Business Analyst &amp; Internal Tool Developer</strong> with 1.5+ years of hands-on experience building real business systems from the ground up across two companies.</p>
-        <p>At <strong>MakeMyClicks</strong>, I singlehandedly built and deployed <strong>8 internal business systems</strong> used by 45+ employees daily — including a Smart IMS managing ₹2.70 Crore inventory, a GPS attendance PWA, a full CRM, and a dispatch FMS with 15–25× speed improvement.</p>
-        <p>At <strong>LegalPay (Scorchers Services II)</strong>, I handle MIS reporting for NBFC/bank collections, manage cloud dialer campaigns, and deliver daily, weekly and monthly reports for senior management across multiple banking clients.</p>
-        <p>My work sits at the intersection of <strong>business operations and technology</strong> — translating complex workflows into clean, usable systems that actually get used.</p>
+        <p>I didn't start with a computer science degree or a bootcamp. I started with Google Sheets and a problem that needed solving. At MakeMyClicks, nobody was going to build the tools we needed — so I built them myself.</p>
+        <p>What began as simple Apps Script automations evolved into <strong>8 full-stack production systems</strong> used by 45+ employees every single day. Smart IMS tracking ₹2.7Cr of inventory. Staffly managing GPS attendance. Bikree CRM running on 18 Supabase tables. All built by one person — without a formal developer title.</p>
+        <p>I bridge the gap between business operations and technology. I don't just manage data — <strong>I build the systems that manage it.</strong></p>
       </div>
       <div class="adetails">
         <div class="adrow"><span class="adkey">Location</span><span>India</span></div>
@@ -627,6 +639,15 @@ footer{background:var(--black);color:rgba(255,255,255,0.4);text-align:center;pad
       </div>
       <div class="avail"><span class="dot"></span> Open to work — Available immediately</div>
     </div>
+  </div>
+  <div class="journey">
+    <span class="journey-step">Google Sheets</span><span class="journey-arrow">→</span>
+    <span class="journey-step">Apps Script</span><span class="journey-arrow">→</span>
+    <span class="journey-step">JavaScript</span><span class="journey-arrow">→</span>
+    <span class="journey-step">Supabase</span><span class="journey-arrow">→</span>
+    <span class="journey-step">PWA</span><span class="journey-arrow">→</span>
+    <span class="journey-step">Vercel</span><span class="journey-arrow">→</span>
+    <span class="journey-step" style="color:#d90429;">8 Systems Live</span>
   </div>
 </div>
 
@@ -645,40 +666,59 @@ footer{background:var(--black);color:rgba(255,255,255,0.4);text-align:center;pad
   </div>
   <div class="pcontent">
     <div class="pfgrid">
-      <div class="pfcard" onclick="window.open('https://pricev-3.vercel.app','_blank')">
-        <div class="pfnum">001 / 005</div><div class="pfstat"><span class="dot"></span> Live</div>
-        <div class="pfname">PRICEV3</div><div class="pfrole">Price Catalog &amp; Calculator</div>
+      <div class="pfcard" onclick="window.open('https://goodsguru.vercel.app','_blank')">
+        <div class="pfnum">001 / 006</div><div class="pfstat"><span class="dot"></span> Live</div>
+        <div class="pfname">GOODSGURU</div>
+        <div class="pf-impact">Manages ₹2.7Cr inventory daily</div>
+        <div class="pfrole">Smart Inventory Management System</div>
+        <div class="pfdesc">Full IMS with ageing reports, vendor performance analytics, smart reorder alerts, purchase orders, sales tracking and AI audit tools.</div>
+        <div class="pftags"><span class="pftag">Vite</span><span class="pftag">Supabase</span><span class="pftag">Analytics</span><span class="pftag">AI Audit</span></div>
+        <a class="pf-live" href="https://goodsguru.vercel.app" target="_blank" onclick="event.stopPropagation()">LIVE ↗</a>
+      </div>
+      <div class="pfcard" onclick="window.open('https://staffly2.netlify.app','_blank')">
+        <div class="pfnum">002 / 006</div><div class="pfstat"><span class="dot"></span> Live</div>
+        <div class="pfname">STAFFLY</div>
+        <div class="pf-impact">GPS attendance for 45+ employees</div>
+        <div class="pfrole">GPS Attendance PWA</div>
+        <div class="pfdesc">GPS-based attendance tracking PWA for field and office teams. Real-time location check-in, shift management and daily attendance reports.</div>
+        <div class="pftags"><span class="pftag">PWA</span><span class="pftag">GPS</span><span class="pftag">Supabase</span><span class="pftag">Service Worker</span></div>
+        <a class="pf-live" href="https://staffly2.netlify.app" target="_blank" onclick="event.stopPropagation()">LIVE ↗</a>
+      </div>
+      <div class="pfcard" onclick="window.open('https://bikree.netlify.app','_blank')">
+        <div class="pfnum">003 / 006</div><div class="pfstat"><span class="dot"></span> Live</div>
+        <div class="pfname">BIKREE CRM</div>
+        <div class="pf-impact">18-table Supabase CRM backend</div>
+        <div class="pfrole">CRM &amp; Sales System</div>
+        <div class="pfdesc">End-to-end CRM for sales teams built on 18 Supabase tables. Lead management, follow-up tracking, customer records, activity logs and sales pipeline.</div>
+        <div class="pftags"><span class="pftag">HTML/JS</span><span class="pftag">Supabase</span><span class="pftag">18 Tables</span><span class="pftag">Lucide</span></div>
+        <a class="pf-live" href="https://bikree.netlify.app" target="_blank" onclick="event.stopPropagation()">LIVE ↗</a>
+      </div>
+      <div class="pfcard" onclick="window.open('https://ravangi.netlify.app','_blank')">
+        <div class="pfnum">004 / 006</div><div class="pfstat"><span class="dot"></span> Live</div>
+        <div class="pfname">DISPATCH FMS</div>
+        <div class="pf-impact">15–25× faster than manual process</div>
+        <div class="pfrole">Dispatch &amp; Delivery Tracker</div>
+        <div class="pfdesc">Real-time dispatch and delivery tracking PWA. Route management, live status updates, multi-language and offline capability with 15–25× speed improvement.</div>
+        <div class="pftags"><span class="pftag">PWA</span><span class="pftag">Supabase</span><span class="pftag">Service Worker</span><span class="pftag">Offline</span></div>
+        <a class="pf-live" href="https://ravangi.netlify.app" target="_blank" onclick="event.stopPropagation()">LIVE ↗</a>
+      </div>
+      <div class="pfcard" onclick="window.open('https://flowcheckly.netlify.app','_blank')">
+        <div class="pfnum">005 / 006</div><div class="pfstat"><span class="dot"></span> Live</div>
+        <div class="pfname">CHECKLY</div>
+        <div class="pf-impact">Daily maintenance with photo evidence</div>
+        <div class="pfrole">Maintenance Checklist PWA</div>
+        <div class="pfdesc">Daily maintenance checklist PWA with photo evidence upload, task assignment, completion tracking and automated status reports.</div>
+        <div class="pftags"><span class="pftag">PWA</span><span class="pftag">Supabase</span><span class="pftag">Camera API</span></div>
+        <a class="pf-live" href="https://flowcheckly.netlify.app" target="_blank" onclick="event.stopPropagation()">LIVE ↗</a>
+      </div>
+      <div class="pfcard" onclick="window.open('https://mulyaa.netlify.app','_blank')">
+        <div class="pfnum">006 / 006</div><div class="pfstat"><span class="dot"></span> Live</div>
+        <div class="pfname">PRICE CATALOG</div>
+        <div class="pf-impact">Role-based pricing portal</div>
+        <div class="pfrole">Price Catalog &amp; Calculator</div>
         <div class="pfdesc">Full-featured price catalog for printing professionals. Role-based access with ADMIN, SALES and EA roles. Cost analysis, margin tracking and product management.</div>
         <div class="pftags"><span class="pftag">Vite</span><span class="pftag">Supabase</span><span class="pftag">Chart.js</span><span class="pftag">XLSX</span></div>
-        <div class="pfarr">Visit Live →</div>
-      </div>
-      <div class="pfcard" onclick="window.open('https://bikree.vercel.app','_blank')">
-        <div class="pfnum">002 / 005</div><div class="pfstat"><span class="dot"></span> Live</div>
-        <div class="pfname">BIKREE</div><div class="pfrole">CRM &amp; Sales System</div>
-        <div class="pfdesc">End-to-end CRM for sales teams. Lead management, follow-up tracking, customer records, activity logs and sales pipeline management.</div>
-        <div class="pftags"><span class="pftag">HTML/JS</span><span class="pftag">Supabase</span><span class="pftag">Lucide</span></div>
-        <div class="pfarr">Visit Live →</div>
-      </div>
-      <div class="pfcard" onclick="window.open('https://kharidi.vercel.app','_blank')">
-        <div class="pfnum">003 / 005</div><div class="pfstat"><span class="dot"></span> Live</div>
-        <div class="pfname">KHARIDI</div><div class="pfrole">Procurement System</div>
-        <div class="pfdesc">Procurement management with AI-powered assistance. Purchase order tracking, vendor management and spend analytics powered by Gemini AI.</div>
-        <div class="pftags"><span class="pftag">HTML/JS</span><span class="pftag">Supabase</span><span class="pftag">Gemini AI</span></div>
-        <div class="pfarr">Visit Live →</div>
-      </div>
-      <div class="pfcard" onclick="window.open('https://dispatch.vercel.app','_blank')">
-        <div class="pfnum">004 / 005</div><div class="pfstat"><span class="dot"></span> Live</div>
-        <div class="pfname">DISPATCH</div><div class="pfrole">Dispatch &amp; Delivery Tracker</div>
-        <div class="pfdesc">Real-time dispatch and delivery tracking system with PWA support. Route management, live status updates, multi-language and offline capability.</div>
-        <div class="pftags"><span class="pftag">PWA</span><span class="pftag">Supabase</span><span class="pftag">Service Worker</span></div>
-        <div class="pfarr">Visit Live →</div>
-      </div>
-      <div class="pfcard" onclick="window.open('https://goodsguru.vercel.app','_blank')" style="grid-column:span 2;">
-        <div class="pfnum">005 / 005</div><div class="pfstat"><span class="dot"></span> Live</div>
-        <div class="pfname">GOODSGURU</div><div class="pfrole">Smart Inventory Management System</div>
-        <div class="pfdesc">Full inventory management platform with ageing reports, vendor performance analytics, smart reorder alerts, purchase orders, sales tracking and AI audit tools.</div>
-        <div class="pftags"><span class="pftag">Vite</span><span class="pftag">Supabase</span><span class="pftag">Analytics</span><span class="pftag">AI Audit</span></div>
-        <div class="pfarr">Visit Live →</div>
+        <a class="pf-live" href="https://mulyaa.netlify.app" target="_blank" onclick="event.stopPropagation()">LIVE ↗</a>
       </div>
     </div>
   </div>
@@ -1048,7 +1088,7 @@ function initHero(){
 
 /* ── TYPEWRITER ── */
 (function(){
-  const phrases = ['MIS Executive','Business Analyst','Tool Developer','8 Systems Built'];
+  const phrases = ['MIS Executive | Built 8 Production Systems','Google Apps Script → Supabase → Vercel'];
   const el = document.getElementById('tw-text');
   if(!el) return;
   let idx = 0, char = 0, deleting = false;
@@ -1056,11 +1096,11 @@ function initHero(){
     const word = phrases[idx];
     el.textContent = word.slice(0, char);
     if (!deleting) {
-      if (++char > word.length) { deleting = true; setTimeout(tick, 2200); return; }
+      if (++char > word.length) { deleting = true; setTimeout(tick, 3000); return; }
     } else {
       if (--char < 0) { deleting = false; char = 0; idx = (idx + 1) % phrases.length; }
     }
-    setTimeout(tick, deleting ? 38 : 72);
+    setTimeout(tick, deleting ? 35 : 70);
   }
   setTimeout(tick, 900);
 })();
