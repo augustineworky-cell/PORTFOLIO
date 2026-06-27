@@ -441,6 +441,10 @@ footer{background:var(--black);color:rgba(255,255,255,0.4);text-align:center;pad
 /* PROFILE AVATAR */
 .profile-avatar{width:150px;height:150px;border-radius:50%;border:3px solid #d90429;background:#1a1a1a;display:flex;align-items:center;justify-content:center;font-size:2rem;color:#d90429;font-weight:700;font-family:'Inter',sans-serif;margin-bottom:1.5rem;flex-shrink:0;}
 
+/* SCROLL REVEAL */
+.reveal{opacity:0;transform:translateY(40px);transition:opacity 0.8s ease,transform 0.8s ease;}
+.reveal.active{opacity:1;transform:translateY(0);}
+
 /* SLIDING NAV PILL */
 .nav-links{position:relative;display:flex;align-items:center;gap:2px;}
 .nav-active-bg{position:absolute;background:rgba(196,51,78,0.1);border:1px solid rgba(196,51,78,0.3);border-radius:999px;pointer-events:none;z-index:0;transition:all 0.3s cubic-bezier(0.25,0.46,0.45,0.94);opacity:0;}
@@ -652,7 +656,7 @@ footer{background:var(--black);color:rgba(255,255,255,0.4);text-align:center;pad
       <span>MIS Executive</span><span>•</span><span>Business Analyst</span><span>•</span><span>Data Analyst</span><span>•</span><span>Tool Developer</span><span>•</span><span>Automation</span><span>•</span><span>MIS Executive</span><span>•</span><span>Business Analyst</span><span>•</span><span>Data Analyst</span><span>•</span><span>Tool Developer</span><span>•</span><span>Automation</span><span>•</span>
     </div>
   </div>
-  <div class="about-split">
+  <div class="about-split reveal">
     <div class="about-img"><img src="img1.jpg" alt="Augustine"></div>
     <div class="about-txt">
       <div class="profile-avatar">AR</div>
@@ -677,7 +681,7 @@ footer{background:var(--black);color:rgba(255,255,255,0.4);text-align:center;pad
       <div class="avail"><span class="dot"></span> Open to work — Available immediately</div>
     </div>
   </div>
-  <div class="journey">
+  <div class="journey reveal">
     <span class="journey-step">Google Sheets</span><span class="journey-arrow">→</span>
     <span class="journey-step">Apps Script</span><span class="journey-arrow">→</span>
     <span class="journey-step">JavaScript</span><span class="journey-arrow">→</span>
@@ -702,7 +706,7 @@ footer{background:var(--black);color:rgba(255,255,255,0.4);text-align:center;pad
     </div>
   </div>
   <div class="pcontent">
-    <div class="pfgrid">
+    <div class="pfgrid reveal">
       <div class="pfcard" onclick="window.open('https://goodsguru.vercel.app','_blank')">
         <div class="pfnum">001 / 006</div><div class="pfstat"><span class="dot"></span> Live</div>
         <div class="pfname">GOODSGURU</div>
@@ -785,7 +789,7 @@ footer{background:var(--black);color:rgba(255,255,255,0.4);text-align:center;pad
     </div>
   </div>
   <div class="pcontent">
-    <div class="sb-section" id="sb-section">
+    <div class="sb-section reveal" id="sb-section">
       <div class="sb-group">
         <div class="sb-group-title">Spreadsheet &amp; Automation</div>
         <div class="sb-item"><div class="sb-meta"><span class="sb-name">Google Sheets</span><span class="sb-pct">95%</span></div><div class="sb-bar-wrap"><div class="sb-bar-fill" data-width="95"></div></div></div>
@@ -838,7 +842,7 @@ footer{background:var(--black);color:rgba(255,255,255,0.4);text-align:center;pad
     </div>
   </div>
   <div class="cinner">
-    <div class="contact-grid">
+    <div class="contact-grid reveal">
       <div>
         <div class="contact-info-title">Get In Touch</div>
         <div class="ci-item">
@@ -1012,28 +1016,28 @@ footer{background:var(--black);color:rgba(255,255,255,0.4);text-align:center;pad
   <div class="divider"></div>
 
   <div class="projects-grid" style="margin-bottom:4rem;">
-    <div class="proj-card">
+    <div class="proj-card reveal">
       <div class="proj-num">001 / 004</div>
       <div class="proj-name">FMS</div>
       <div class="proj-role">Flow Management System</div>
       <div class="proj-desc">The backbone of BCI methodology. FMS maps every business process into a structured Google Sheet flow. Track tasks, assign responsibilities, monitor progress — all without any software subscription.</div>
       <div class="proj-tags"><span class="proj-tag">Google Sheets</span><span class="proj-tag">AppScript</span><span class="proj-tag">Process Flow</span></div>
     </div>
-    <div class="proj-card">
+    <div class="proj-card reveal">
       <div class="proj-num">002 / 004</div>
       <div class="proj-name">IMS</div>
       <div class="proj-role">Inventory Management System</div>
       <div class="proj-desc">Complete stock management inside Google Sheets. Purchase orders, stock levels, reorder alerts, vendor tracking and inventory valuation — automated with AppScript triggers.</div>
       <div class="proj-tags"><span class="proj-tag">Google Sheets</span><span class="proj-tag">AppScript</span><span class="proj-tag">Inventory</span></div>
     </div>
-    <div class="proj-card">
+    <div class="proj-card reveal">
       <div class="proj-num">003 / 004</div>
       <div class="proj-name">ACCOUNTS</div>
       <div class="proj-role">Account Checklist System</div>
       <div class="proj-desc">Daily, weekly and monthly account checklists automated in Google Sheets. Bank reconciliation, expense tracking, P&amp;L reports and tax preparation — all in one system.</div>
       <div class="proj-tags"><span class="proj-tag">Google Sheets</span><span class="proj-tag">Accounting</span><span class="proj-tag">Checklist</span></div>
     </div>
-    <div class="proj-card">
+    <div class="proj-card reveal">
       <div class="proj-num">004 / 004</div>
       <div class="proj-name">AUTOMATION</div>
       <div class="proj-role">Google AppScript Automation</div>
@@ -1045,7 +1049,7 @@ footer{background:var(--black);color:rgba(255,255,255,0.4);text-align:center;pad
   <!-- FMS FLASHCARD -->
   <div class="sec-eyebrow" style="margin-bottom:1rem;">[ FMS Deep Dive ]</div>
   <div style="margin-bottom:4rem;">
-    <div class="fms-flashcard">
+    <div class="fms-flashcard reveal">
       <div class="card-header">
         <h2>FMS — Flow Management Sheet</h2>
         <div class="tags">
@@ -1105,21 +1109,21 @@ footer{background:var(--black);color:rgba(255,255,255,0.4);text-align:center;pad
   <div class="divider"></div>
 
   <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-bottom:4rem;">
-    <div class="skill-box">
+    <div class="skill-box reveal">
       <div class="skill-box-title">[ What I Learned ]</div>
       <div class="skill-row"><span>FMS Design</span><span class="skill-pct">✓</span></div>
       <div class="skill-row"><span>IMS Building</span><span class="skill-pct">✓</span></div>
       <div class="skill-row"><span>AppScript</span><span class="skill-pct">✓</span></div>
       <div class="skill-row"><span>Account Systems</span><span class="skill-pct">✓</span></div>
     </div>
-    <div class="skill-box">
+    <div class="skill-box reveal">
       <div class="skill-box-title">[ Tools Used ]</div>
       <div class="skill-row"><span>Google Sheets</span><span class="skill-pct">✓</span></div>
       <div class="skill-row"><span>Google AppScript</span><span class="skill-pct">✓</span></div>
       <div class="skill-row"><span>Google Forms</span><span class="skill-pct">✓</span></div>
       <div class="skill-row"><span>Google Drive</span><span class="skill-pct">✓</span></div>
     </div>
-    <div class="skill-box">
+    <div class="skill-box reveal">
       <div class="skill-box-title">[ Systems Built ]</div>
       <div class="skill-row"><span>Flow Systems</span><span class="skill-pct">✓</span></div>
       <div class="skill-row"><span>Inventory Tracking</span><span class="skill-pct">✓</span></div>
@@ -1234,6 +1238,17 @@ document.addEventListener('DOMContentLoaded', ()=>{
   initHero();
   setTimeout(initScroll, 200);
 });
+
+/* ── SCROLL REVEAL ── */
+const revealEls = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('active');
+    }
+  });
+}, { threshold: 0.15 });
+revealEls.forEach(el => revealObserver.observe(el));
 </script>
 </body>
 </html>
