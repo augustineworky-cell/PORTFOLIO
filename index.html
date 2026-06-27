@@ -25,7 +25,12 @@
   --off:100px;
 }
 html{scroll-behavior:smooth;}
-body{background:var(--cream);color:var(--black);font-family:'Inter',sans-serif;overflow-x:hidden;}
+body{background:var(--cream);color:var(--black);font-family:'Inter',sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+::-webkit-scrollbar{width:10px;}
+::-webkit-scrollbar-track{background:#0d0d0d;}
+::-webkit-scrollbar-thumb{background:#d90429;border-radius:5px;}
+::-webkit-scrollbar-thumb:hover{background:#ef233c;}
+.page{scroll-margin-top:80px;}
 
 /* CURTAIN */
 /* CURSOR */
