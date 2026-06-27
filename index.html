@@ -47,6 +47,16 @@ nav{position:fixed;top:var(--ah);left:0;right:0;z-index:1000;height:64px;backgro
 /* HOME */
 #home{background:var(--cream);}
 
+/* STATS BAR */
+.stats-bar{display:flex;justify-content:space-around;align-items:center;background:var(--cream);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:2.5rem 2rem;flex-wrap:wrap;gap:2rem;}
+.stat-item{display:flex;flex-direction:column;align-items:center;text-align:center;flex:1;min-width:150px;}
+.stat-value{font-family:'Bebas Neue',cursive;font-size:3rem;font-weight:400;color:var(--rose);line-height:1;margin-bottom:0.4rem;}
+.stat-label{font-size:0.58rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--muted);font-weight:600;}
+
+/* TYPEWRITER */
+.tw-cursor{display:inline-block;width:2px;height:0.9em;background:var(--rose);margin-left:2px;vertical-align:middle;animation:tw-blink 1s step-end infinite;}
+@keyframes tw-blink{0%,100%{opacity:1;}50%{opacity:0;}}
+
 /* HERO */
 .hero{position:relative;height:100vh;background:var(--cream);overflow:hidden;}
 .hero-eyebrow{position:absolute;top:calc(var(--off) + 2.5rem);left:4rem;z-index:4;}
@@ -452,8 +462,28 @@ footer{background:var(--black);color:rgba(255,255,255,0.4);text-align:center;pad
         <button class="tlnk" onclick="go('about')">Explore Work →</button>
       </div>
       <div class="hero-bot-r" id="hbr">
-        <p class="hero-avail">Available<br>2025</p>
+        <p class="hero-avail"><span id="tw-text"></span><span class="tw-cursor"></span></p>
       </div>
+    </div>
+  </div>
+
+  <!-- STATS BAR -->
+  <div class="stats-bar">
+    <div class="stat-item">
+      <span class="stat-value">8</span>
+      <span class="stat-label">Systems Built</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-value">45+</span>
+      <span class="stat-label">Employees Served</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-value">2</span>
+      <span class="stat-label">Companies</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-value">₹2.7Cr</span>
+      <span class="stat-label">Inventory Managed</span>
     </div>
   </div>
 
@@ -1014,6 +1044,25 @@ function initHero(){
     .from('#hbl', {y:20, opacity:0, duration:0.6}, '-=0.4')
     .from('#hbr', {opacity:0, duration:0.5}, '-=0.4');
 }
+
+/* ── TYPEWRITER ── */
+(function(){
+  const phrases = ['MIS Executive','Business Analyst','Tool Developer','8 Systems Built'];
+  const el = document.getElementById('tw-text');
+  if(!el) return;
+  let idx = 0, char = 0, deleting = false;
+  function tick() {
+    const word = phrases[idx];
+    el.textContent = word.slice(0, char);
+    if (!deleting) {
+      if (++char > word.length) { deleting = true; setTimeout(tick, 2200); return; }
+    } else {
+      if (--char < 0) { deleting = false; char = 0; idx = (idx + 1) % phrases.length; }
+    }
+    setTimeout(tick, deleting ? 38 : 72);
+  }
+  setTimeout(tick, 900);
+})();
 
 /* ── SCROLL ANIMATIONS ── */
 function initScroll(){
